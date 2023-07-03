@@ -7,41 +7,43 @@ var svg_path = "res://svg/bird.svg"
 var scales = [0.5, 1, 1.5, 2]
 
 # Colors to apply
-var colors = [Color.MEDIUM_VIOLET_RED, Color.DEEP_SKY_BLUE, Color.FOREST_GREEN, Color.YELLOW_GREEN]
+var colors = [Color.ORANGE_RED, Color.CORNFLOWER_BLUE, Color.FOREST_GREEN, Color.YELLOW]
 
 # Rotation rates to apply
 var rotation_rate = [1, 1, 2, 1]
 
-# Store the created TextureRects
-var texture_rects = []
+# Store the created Sprites
+var sprites = []
 
 func _ready():
 	for i in range(scales.size()):
-		# Create a new TextureRect
-		var texture_rect = TextureRect.new()
+		# Create a new Sprite
+		var sprite = Sprite2D.new()
 
 		# Load SVG as StreamTexture
 		var svg_texture = load(svg_path)
 
-		# Assign the texture to TextureRect
-		texture_rect.texture = svg_texture
-
-		# Apply color
-		texture_rect.modulate = colors[i]
+		# Assign the texture to Sprite
+		sprite.texture = svg_texture
 
 		# Apply scale
-		texture_rect.scale = Vector2(scales[i], scales[i])
-		
+		sprite.scale = Vector2(scales[i], scales[i])
 
-		# Add the TextureRect as a child of the current node
-		add_child(texture_rect)
+		# Apply color
+		sprite.modulate = colors[i]
 
-		# Position the TextureRect so they don't overlap
-		texture_rect.position = Vector2(i * svg_texture.get_width() * scales[i], 0)
-		
-		# Add the TextureRect to the array
-		texture_rects.append(texture_rect)
+		# Set the pivot_offset to the center of the Sprite
+		sprite.centered = true
+
+		# Add the Sprite as a child of the current node
+		add_child(sprite)
+
+		# Position the Sprite so they don't overlap
+		sprite.position = Vector2(i * svg_texture.get_width() * scales[i], 0)
+
+		# Add the Sprite to the array
+		sprites.append(sprite)
 
 func _process(delta):
-	for i in range(texture_rects.size()):
-		texture_rects[i].rotation += rotation_rate[i] * delta
+	for i in range(sprites.size()):
+		sprites[i].rotation += rotation_rate[i] * delta
