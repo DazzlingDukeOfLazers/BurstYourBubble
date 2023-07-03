@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Burst Your Bubble"
+run/main_scene="res://burst_your_bubble_rnd.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://svg/icon.svg"
 
