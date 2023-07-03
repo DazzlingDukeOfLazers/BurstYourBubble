@@ -15,13 +15,20 @@ var rotation_rate = [1, 1, 2, 1]
 # Starting positions to apply
 var starting_positions = [Vector2(50, 50), Vector2(150, 150), Vector2(250, 250), Vector2(350, 350)]
 
-# Store the created Sprite2Ds
+# Store the created Sprite2Ds and their associated Tweens
 var sprites = []
+
+# Duration of the transition
+var transition_duration = 1.0
 
 # Store the currently dragged Sprite2D
 var dragged_sprite = null
 
+# Create a Tween
+#@onready var tween = get_tree().create_tween()
+
 func _ready():
+	
 	for i in range(scales.size()):
 		# Create a new Sprite2D
 		var sprite = Sprite2D.new()
@@ -54,14 +61,24 @@ func _process(delta):
 	for i in range(sprites.size()):
 		sprites[i].rotation += rotation_rate[i] * delta
 
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			for sprite in sprites:
 				if sprite.get_rect().has_point(sprite.to_local(event.position)):
 					dragged_sprite = sprite
+					# Start the scale animation
+					var tween = create_tween()
+					var sizes = [0.4, 1.6, 1.0]
+					var timings = [0.1, 0.1, 0.1]
+					for size in sizes:
+						var size_vec = size * sprite.scale
+						tween.tween_property(sprite, "scale", size_vec, timings.pop_at(0))
 					return
 		else:
 			dragged_sprite = null
 	elif event is InputEventMouseMotion and dragged_sprite:
 		dragged_sprite.position += event.relative
+	
+	
