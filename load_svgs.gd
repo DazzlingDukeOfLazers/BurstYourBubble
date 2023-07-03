@@ -26,6 +26,7 @@ var dragged_sprite = null
 
 # Create a Tween
 #@onready var tween = get_tree().create_tween()
+var rotation_multiplier = 2.0
 
 func _ready():
 	
@@ -59,7 +60,7 @@ func _ready():
 
 func _process(delta):
 	for i in range(sprites.size()):
-		sprites[i].rotation += rotation_rate[i] * delta
+		sprites[i].rotation += rotation_rate[i] * delta * rotation_multiplier
 
 
 func _unhandled_input(event):
@@ -82,3 +83,14 @@ func _unhandled_input(event):
 		dragged_sprite.position += event.relative
 	
 	
+
+
+func _on_texture_button_button_down():
+	rotation_multiplier = 8.0
+	
+
+
+
+
+func _on_texture_button_button_up():
+	rotation_multiplier = 1.0
