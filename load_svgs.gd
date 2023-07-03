@@ -7,10 +7,13 @@ var svg_path = "res://svg/bird.svg"
 var scales = [0.5, 1, 1.5, 2]
 
 # Colors to apply
-var colors = [Color.ORANGE_RED, Color.CORNFLOWER_BLUE, Color.FOREST_GREEN, Color.YELLOW]
+var colors = [Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW]
 
 # Rotation rates to apply
 var rotation_rate = [1, 1, 2, 1]
+
+# Starting positions to apply
+var starting_positions = [Vector2(50, 50), Vector2(150, 150), Vector2(250, 250), Vector2(350, 350)]
 
 # Store the created Sprites
 var sprites = []
@@ -38,8 +41,8 @@ func _ready():
 		# Add the Sprite as a child of the current node
 		add_child(sprite)
 
-		# Position the Sprite so they don't overlap
-		sprite.position = Vector2(i * svg_texture.get_width() * scales[i], 0)
+		# Position the Sprite based on the starting_positions array
+		sprite.position = starting_positions[i]
 
 		# Add the Sprite to the array
 		sprites.append(sprite)
