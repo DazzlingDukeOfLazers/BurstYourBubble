@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 #	time_now = Time.get_ticks_msec()
 #	var time_elapsed = time_now - time_start
 #	self.text = str(time_elapsed/1000.0)

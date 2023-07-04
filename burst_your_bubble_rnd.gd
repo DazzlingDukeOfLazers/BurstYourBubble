@@ -13,16 +13,24 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	time_now = Time.get_ticks_msec()
 	var time_elapsed = time_now - time_start
 	get_node("Hud/Timer").text = str(time_elapsed/1000.0)
 	pass
 
 
+func clear_mobs():
+	for i in range($mobs.get_child_count()):
+		var child_node = $mobs.get_child(0)  # Always get the first child since the list is updated each loop
+		$mobs.remove_child(child_node)
+		child_node.queue_free()
+
 func game_over():
 	$game_meta/ScoreTimer.stop()
 	$game_meta/MobTimer.stop()
+	clear_mobs()
+
 
 func new_game():
 	get_tree().call_group(&"mobs", &"queue_free")
@@ -66,7 +74,7 @@ func _on_mob_timer_timeout():
 	mob.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.
-	add_child(mob)
+	$mobs.add_child(mob)
 
 
 func _on_player_hit():
@@ -77,3 +85,6 @@ func _on_player_hit():
 func _on_texture_button_button_down():
 	game_over()
 	new_game()
+	
+func _on_texture_button_button_up():
+	pass

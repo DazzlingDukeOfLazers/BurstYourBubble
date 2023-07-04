@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dg0xoqfe8kuej"]
+[gd_scene load_steps=13 format=3 uid="uid://dg0xoqfe8kuej"]
 
 [ext_resource type="Texture2D" uid="uid://dxbh30hay8n3q" path="res://svg/icon.svg" id="1_dgl07"]
 [ext_resource type="Script" path="res://burst_your_bubble_rnd.gd" id="1_f7313"]
@@ -8,6 +8,14 @@
 [ext_resource type="Script" path="res://timer.gd" id="5_pqmqn"]
 [ext_resource type="Script" path="res://Score.gd" id="6_7xn75"]
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="7_85j86"]
+
+[sub_resource type="SystemFont" id="SystemFont_236ut"]
+
+[sub_resource type="FontVariation" id="FontVariation_0fv2f"]
+base_font = SubResource("SystemFont_236ut")
+
+[sub_resource type="Theme" id="Theme_q7lke"]
+/fonts/bar = SubResource("FontVariation_0fv2f")
 
 [sub_resource type="Curve2D" id="Curve2D_ueypw"]
 _data = {
@@ -57,6 +65,17 @@ text = "-1"
 horizontal_alignment = 2
 script = ExtResource("6_7xn75")
 
+[node name="uded" type="Label" parent="Hud"]
+top_level = true
+offset_left = 944.0
+offset_top = 604.0
+offset_right = 988.0
+offset_bottom = 630.0
+theme = SubResource("Theme_q7lke")
+text = "u ded"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Player" parent="." instance=ExtResource("7_85j86")]
 
 [node name="game_meta" type="Node" parent="."]
@@ -78,6 +97,8 @@ curve = SubResource("Curve2D_ueypw")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="game_meta/MobPath"]
 position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="mobs" type="Node" parent="."]
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_down" from="TextureButton" to="Hud/Score" method="_on_texture_button_button_down"]
