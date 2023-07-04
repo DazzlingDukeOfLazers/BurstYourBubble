@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dg0xoqfe8kuej"]
+[gd_scene load_steps=14 format=3 uid="uid://dg0xoqfe8kuej"]
 
 [ext_resource type="Script" path="res://burst_your_bubble_rnd.gd" id="1_f7313"]
 [ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="2_wfa5i"]
@@ -15,6 +15,13 @@ base_font = SubResource("SystemFont_236ut")
 
 [sub_resource type="Theme" id="Theme_q7lke"]
 /fonts/bar = SubResource("FontVariation_0fv2f")
+
+[sub_resource type="SystemFont" id="SystemFont_dh8ug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qvyv"]
+font = SubResource("SystemFont_dh8ug")
+font_size = 189
+shadow_color = Color(0.831373, 0, 0, 0.792157)
 
 [sub_resource type="Curve2D" id="Curve2D_ueypw"]
 _data = {
@@ -51,22 +58,22 @@ horizontal_alignment = 2
 script = ExtResource("6_7xn75")
 
 [node name="uded" type="Label" parent="Hud"]
-visible = false
 top_level = true
-offset_left = 944.0
-offset_top = 604.0
-offset_right = 988.0
-offset_bottom = 630.0
+offset_left = 714.0
+offset_top = 426.0
+offset_right = 1228.0
+offset_bottom = 688.0
 theme = SubResource("Theme_q7lke")
 text = "u ded"
+label_settings = SubResource("LabelSettings_0qvyv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="Hud"]
-offset_left = 335.0
-offset_top = 457.0
-offset_right = 468.0
-offset_bottom = 590.0
+[node name="start_button" type="TextureButton" parent="Hud"]
+offset_left = 886.0
+offset_top = 688.0
+offset_right = 1019.0
+offset_bottom = 821.0
 texture_normal = ExtResource("3_mt7s7")
 texture_pressed = ExtResource("4_ph2i0")
 
@@ -94,9 +101,11 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="mobs" type="Node" parent="."]
 
-[connection signal="button_down" from="Hud/TextureButton" to="." method="_on_texture_button_button_down"]
-[connection signal="button_down" from="Hud/TextureButton" to="Hud/Score" method="_on_texture_button_button_down"]
-[connection signal="button_up" from="Hud/TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="button_down" from="Hud/start_button" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="Hud/start_button" to="." method="_on_start_button_button_down"]
+[connection signal="button_down" from="Hud/start_button" to="Hud/Score" method="_on_texture_button_button_down"]
+[connection signal="button_up" from="Hud/start_button" to="." method="_on_texture_button_button_up"]
+[connection signal="button_up" from="Hud/start_button" to="." method="_on_start_button_button_up"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="game_meta/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="game_meta/ScoreTimer" to="." method="_on_score_timer_timeout"]
