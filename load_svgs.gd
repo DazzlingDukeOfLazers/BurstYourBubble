@@ -87,10 +87,6 @@ func _unhandled_input(event):
 
 func _on_texture_button_button_down():
 	rotation_multiplier = 8.0
-	
-
-
-
 
 func _on_texture_button_button_up():
 	rotation_multiplier = 1.0
