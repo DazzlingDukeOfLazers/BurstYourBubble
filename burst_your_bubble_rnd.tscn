@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg0xoqfe8kuej"]
+[gd_scene load_steps=7 format=3 uid="uid://dg0xoqfe8kuej"]
 
 [ext_resource type="Script" path="res://load_svgs.gd" id="1_bwtgg"]
 [ext_resource type="Texture2D" uid="uid://dxbh30hay8n3q" path="res://svg/icon.svg" id="1_dgl07"]
 [ext_resource type="Texture2D" uid="uid://3sjtoj6o0qdm" path="res://svg/brick.svg" id="3_mt7s7"]
 [ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="4_ph2i0"]
 [ext_resource type="Script" path="res://timer.gd" id="5_pqmqn"]
+[ext_resource type="Script" path="res://Score.gd" id="6_7xn75"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bwtgg")
@@ -26,12 +27,26 @@ texture_pressed = ExtResource("4_ph2i0")
 [node name="Hud" type="Node" parent="."]
 
 [node name="Timer" type="Label" parent="Hud"]
-offset_left = 966.0
-offset_top = 353.0
-offset_right = 1006.0
-offset_bottom = 376.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_right = -5.0
+offset_bottom = 26.0
+grow_horizontal = 0
 text = "foo"
+horizontal_alignment = 2
 script = ExtResource("5_pqmqn")
 
+[node name="Score" type="Label" parent="Hud"]
+offset_left = 1106.0
+offset_top = 35.0
+offset_right = 1146.0
+offset_bottom = 61.0
+text = "-1"
+horizontal_alignment = 2
+script = ExtResource("6_7xn75")
+
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="TextureButton" to="Hud/Score" method="_on_texture_button_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
