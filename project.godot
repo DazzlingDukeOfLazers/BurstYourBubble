@@ -13,7 +13,14 @@ config_version=5
 config/name="Burst Your Bubble"
 run/main_scene="res://burst_your_bubble_rnd.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://svg/icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [rendering]
 
