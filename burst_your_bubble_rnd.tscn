@@ -76,7 +76,7 @@ one_shot = true
 [node name="MobPath" type="Path2D" parent="game_meta"]
 curve = SubResource("Curve2D_ueypw")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="game_meta/MobPath"]
+[node name="MobSpawnLocation" type="PathFollow2D" parent="game_meta/MobPath"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]

@@ -27,7 +27,7 @@ func new_game():
 
 
 func _on_score_timer_timeout():
-	score += 1d
+	score += 1
 
 func _on_start_timer_timeout():
 	get_node("game_meta/MobTimer").start()
