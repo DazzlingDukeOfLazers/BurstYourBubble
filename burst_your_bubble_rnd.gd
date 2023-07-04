@@ -19,7 +19,7 @@ func _process(_delta):
 	get_node("Hud/Timer").text = str(time_elapsed/1000.0)
 	pass
 
-
+# tbd research if best way
 func clear_mobs():
 	for i in range($mobs.get_child_count()):
 		var child_node = $mobs.get_child(0)  # Always get the first child since the list is updated each loop
@@ -27,17 +27,25 @@ func clear_mobs():
 		child_node.queue_free()
 
 func game_over():
+	reset_scene()
+	$Hud/uded.visible = true
+
+
+func reset_scene():
 	$game_meta/ScoreTimer.stop()
 	$game_meta/MobTimer.stop()
 	clear_mobs()
+	$Hud/uded.visible = false
+	$Player.start($game_meta/StartPosition)
+	$Player.visible = false
+	score = 0
 
 
 func new_game():
-	get_tree().call_group(&"mobs", &"queue_free")
-	score = 0
-	$Player.start($game_meta/StartPosition)
+	reset_scene()
+	$Player.visible = true
 	get_node("game_meta/StartTimer").start()
-
+	
 
 
 
