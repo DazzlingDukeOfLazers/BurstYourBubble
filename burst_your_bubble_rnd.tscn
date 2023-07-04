@@ -1,6 +1,5 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg0xoqfe8kuej"]
+[gd_scene load_steps=12 format=3 uid="uid://dg0xoqfe8kuej"]
 
-[ext_resource type="Texture2D" uid="uid://dxbh30hay8n3q" path="res://svg/icon.svg" id="1_dgl07"]
 [ext_resource type="Script" path="res://burst_your_bubble_rnd.gd" id="1_f7313"]
 [ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="2_wfa5i"]
 [ext_resource type="Texture2D" uid="uid://3sjtoj6o0qdm" path="res://svg/brick.svg" id="3_mt7s7"]
@@ -26,12 +25,6 @@ point_count = 5
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_f7313")
 mob_scene = ExtResource("2_wfa5i")
-
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(544, 343)
-texture = ExtResource("1_dgl07")
-
-[node name="Node" type="Node" parent="."]
 
 [node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 335.0
