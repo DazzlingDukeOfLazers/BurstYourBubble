@@ -72,3 +72,8 @@ func _on_mob_timer_timeout():
 func _on_player_hit():
 	game_over()
 	pass # Replace with function body.
+
+
+func _on_texture_button_button_down():
+	game_over()
+	new_game()
