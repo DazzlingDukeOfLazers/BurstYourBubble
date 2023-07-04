@@ -62,7 +62,7 @@ script = ExtResource("6_7xn75")
 [node name="game_meta" type="Node" parent="."]
 
 [node name="StartPosition" type="Marker2D" parent="game_meta"]
-position = Vector2(240, 450)
+position = Vector2(500, 200)
 
 [node name="MobTimer" type="Timer" parent="game_meta"]
 wait_time = 0.5
@@ -82,7 +82,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_down" from="TextureButton" to="Hud/Score" method="_on_texture_button_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
-[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="game_meta/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="game_meta/ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="game_meta/StartTimer" to="." method="_on_start_timer_timeout"]
