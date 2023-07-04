@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6u84hlcs25bm"]
+
+[ext_resource type="Texture2D" uid="uid://cchk4aw4bqbqf" path="res://svg/helicopter.svg" id="1_6hfux"]
+[ext_resource type="Script" path="res://mob.gd" id="1_ptsty"]
+[ext_resource type="Texture2D" uid="uid://bo2r1pg8pgwee" path="res://svg/helicopter_2.svg" id="2_0srtx"]
+[ext_resource type="Texture2D" uid="uid://d15424m6d6x74" path="res://svg/garment.svg" id="3_1nxu2"]
+[ext_resource type="Texture2D" uid="uid://cmeia6cckkmu7" path="res://svg/butterfly.svg" id="3_4ri43"]
+[ext_resource type="Texture2D" uid="uid://dowiofls314yj" path="res://svg/butterfly_2.svg" id="4_h3kj1"]
+[ext_resource type="Texture2D" uid="uid://bbwn84vhjdnen" path="res://svg/garment_2.svg" id="4_ieja4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yhm0p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6hfux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0srtx")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4ri43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h3kj1")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1nxu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ieja4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yh3ay"]
+radius = 49.163
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_ptsty")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yhm0p")
+animation = &"swim"
+frame_progress = 0.845249
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yh3ay")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

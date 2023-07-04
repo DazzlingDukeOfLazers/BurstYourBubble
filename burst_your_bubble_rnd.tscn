@@ -1,43 +1,23 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg0xoqfe8kuej"]
+[gd_scene load_steps=10 format=3 uid="uid://dg0xoqfe8kuej"]
 
-[ext_resource type="Script" path="res://load_svgs.gd" id="1_bwtgg"]
 [ext_resource type="Texture2D" uid="uid://dxbh30hay8n3q" path="res://svg/icon.svg" id="1_dgl07"]
+[ext_resource type="Script" path="res://burst_your_bubble_rnd.gd" id="1_f7313"]
+[ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="2_wfa5i"]
 [ext_resource type="Texture2D" uid="uid://3sjtoj6o0qdm" path="res://svg/brick.svg" id="3_mt7s7"]
 [ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="4_ph2i0"]
 [ext_resource type="Script" path="res://timer.gd" id="5_pqmqn"]
 [ext_resource type="Script" path="res://Score.gd" id="6_7xn75"]
-[ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="7_2pj8a"]
-[ext_resource type="Script" path="res://Player.gd" id="7_bcrqv"]
-[ext_resource type="Texture2D" uid="uid://bu6mmgrj1k7h1" path="res://svg/cow.svg" id="8_5tkam"]
-[ext_resource type="Texture2D" uid="uid://b7d11pvu5rsii" path="res://svg/cow_2.svg" id="9_3l3vv"]
+[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="7_85j86"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_0kvwm"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_2pj8a")
-}],
-"loop": true,
-"name": &"up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_5tkam")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_3l3vv")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_v43r0"]
-radius = 51.0392
+[sub_resource type="Curve2D" id="Curve2D_ueypw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2.08165e-12, 2.08165e-12, 0, 0, 0, 0, 1920, 2.08165e-12, 0, 0, 0, 0, 1920, 1080, 0, 0, 0, 0, 2.08165e-12, 1080, 0, 0, 0, 0, 2.08165e-12, 2.08165e-12)
+}
+point_count = 5
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_bwtgg")
+script = ExtResource("1_f7313")
+mob_scene = ExtResource("2_wfa5i")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(544, 343)
@@ -77,21 +57,32 @@ text = "-1"
 horizontal_alignment = 2
 script = ExtResource("6_7xn75")
 
-[node name="Player" type="Area2D" parent="."]
-position = Vector2(1121, 402)
-script = ExtResource("7_bcrqv")
-metadata/_edit_group_ = true
+[node name="Player" parent="." instance=ExtResource("7_85j86")]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_0kvwm")
-animation = &"up"
+[node name="game_meta" type="Node" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CircleShape2D_v43r0")
-one_way_collision_margin = 43.1
-debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+[node name="StartPosition" type="Marker2D" parent="game_meta"]
+position = Vector2(240, 450)
+
+[node name="MobTimer" type="Timer" parent="game_meta"]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="game_meta"]
+
+[node name="StartTimer" type="Timer" parent="game_meta"]
+wait_time = 2.0
+one_shot = true
+
+[node name="MobPath" type="Path2D" parent="game_meta"]
+curve = SubResource("Curve2D_ueypw")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="game_meta/MobPath"]
+position = Vector2(2.08165e-12, 2.08165e-12)
 
 [connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
 [connection signal="button_down" from="TextureButton" to="Hud/Score" method="_on_texture_button_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
-[connection signal="body_entered" from="Player" to="." method="_on_player_body_entered"]
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="game_meta/MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="game_meta/ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="game_meta/StartTimer" to="." method="_on_start_timer_timeout"]

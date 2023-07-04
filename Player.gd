@@ -51,6 +51,6 @@ func _on_player_body_entered(body):
 
 	
 func start(pos):
-	self.position = pos
+#	self.position = pos
 	show
 	$CollisionShape2D.disabled = false
