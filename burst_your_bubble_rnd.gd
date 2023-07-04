@@ -28,6 +28,7 @@ func clear_mobs():
 
 func game_over():
 	reset_scene()
+	$Hud/TextureButton.visible = true 
 	$Hud/uded.visible = true
 
 
@@ -35,6 +36,7 @@ func reset_scene():
 	$game_meta/ScoreTimer.stop()
 	$game_meta/MobTimer.stop()
 	clear_mobs()
+	$Hud/TextureButton.visible = false
 	$Hud/uded.visible = false
 	$Player.start($game_meta/StartPosition)
 	$Player.visible = false

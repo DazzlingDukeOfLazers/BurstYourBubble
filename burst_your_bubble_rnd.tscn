@@ -26,14 +26,6 @@ point_count = 5
 script = ExtResource("1_f7313")
 mob_scene = ExtResource("2_wfa5i")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 335.0
-offset_top = 457.0
-offset_right = 468.0
-offset_bottom = 590.0
-texture_normal = ExtResource("3_mt7s7")
-texture_pressed = ExtResource("4_ph2i0")
-
 [node name="Hud" type="Node" parent="."]
 
 [node name="Timer" type="Label" parent="Hud"]
@@ -70,6 +62,14 @@ text = "u ded"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TextureButton" type="TextureButton" parent="Hud"]
+offset_left = 335.0
+offset_top = 457.0
+offset_right = 468.0
+offset_bottom = 590.0
+texture_normal = ExtResource("3_mt7s7")
+texture_pressed = ExtResource("4_ph2i0")
+
 [node name="Player" parent="." instance=ExtResource("7_85j86")]
 
 [node name="game_meta" type="Node" parent="."]
@@ -94,9 +94,9 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="mobs" type="Node" parent="."]
 
-[connection signal="button_down" from="TextureButton" to="." method="_on_texture_button_button_down"]
-[connection signal="button_down" from="TextureButton" to="Hud/Score" method="_on_texture_button_button_down"]
-[connection signal="button_up" from="TextureButton" to="." method="_on_texture_button_button_up"]
+[connection signal="button_down" from="Hud/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="Hud/TextureButton" to="Hud/Score" method="_on_texture_button_button_down"]
+[connection signal="button_up" from="Hud/TextureButton" to="." method="_on_texture_button_button_up"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="game_meta/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="game_meta/ScoreTimer" to="." method="_on_score_timer_timeout"]
