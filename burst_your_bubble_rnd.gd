@@ -22,6 +22,7 @@ func update_player_timer():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	update_player_timer()
+	$Player.move_to_front()
 	
 # tbd research if best way
 func clear_mobs():
@@ -40,6 +41,7 @@ func reset_scene():
 	$game_meta/ScoreTimer.stop()
 	$game_meta/MobTimer.stop()
 	clear_mobs()
+	$bg_color.color = Color(randf(), randf(), randf())
 	$Hud/start_button.visible = false
 	$Hud/uded.visible = false
 	$Hud/Timer.text = "0.0"
@@ -47,11 +49,13 @@ func reset_scene():
 	$Player.visible = false
 	score = 0
 	
+	
 
 
 func new_game():
 	reset_scene()
 	$Player.visible = true
+	
 	get_node("game_meta/StartTimer").start()
 	
 
