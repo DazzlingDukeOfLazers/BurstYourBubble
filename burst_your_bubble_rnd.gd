@@ -12,13 +12,17 @@ func _ready():
 	new_game()
 
 
+func update_player_timer():
+	if not $game_meta/ScoreTimer.is_stopped():		
+		time_now = Time.get_ticks_msec()
+		var time_elapsed = time_now - time_start
+		get_node("Hud/Timer").text = str(time_elapsed/1000.0)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	time_now = Time.get_ticks_msec()
-	var time_elapsed = time_now - time_start
-	get_node("Hud/Timer").text = str(time_elapsed/1000.0)
-	pass
-
+	update_player_timer()
+	
 # tbd research if best way
 func clear_mobs():
 	for i in range($mobs.get_child_count()):
@@ -38,9 +42,11 @@ func reset_scene():
 	clear_mobs()
 	$Hud/start_button.visible = false
 	$Hud/uded.visible = false
+	$Hud/Timer.text = "0.0"
 	$Player.start($game_meta/StartPosition)
 	$Player.visible = false
 	score = 0
+	
 
 
 func new_game():
