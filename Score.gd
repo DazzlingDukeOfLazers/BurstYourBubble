@@ -13,7 +13,3 @@ func _process(_delta):
 	self.text = str(score)
 	pass
 
-
-func _on_texture_button_button_down():
-	score += 1
-	pass # Replace with function body.

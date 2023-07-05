@@ -101,11 +101,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="mobs" type="Node" parent="."]
 
-[connection signal="button_down" from="Hud/start_button" to="." method="_on_texture_button_button_down"]
 [connection signal="button_down" from="Hud/start_button" to="." method="_on_start_button_button_down"]
-[connection signal="button_down" from="Hud/start_button" to="Hud/Score" method="_on_texture_button_button_down"]
-[connection signal="button_up" from="Hud/start_button" to="." method="_on_texture_button_button_up"]
-[connection signal="button_up" from="Hud/start_button" to="." method="_on_start_button_button_up"]
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="game_meta/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="game_meta/ScoreTimer" to="." method="_on_score_timer_timeout"]
