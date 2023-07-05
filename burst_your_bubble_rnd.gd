@@ -6,6 +6,8 @@ var score
 @onready var time_start = 0
 @onready var time_now = 0
 
+var game_state = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	time_start = Time.get_ticks_msec()
@@ -23,6 +25,9 @@ func update_player_timer():
 func _process(_delta):
 	update_player_timer()
 	$Player.move_to_front()
+	if game_state == 0:
+		if Input.is_action_pressed("start_game"):
+			new_game()
 	
 # tbd research if best way
 func clear_mobs():
@@ -39,6 +44,7 @@ func game_over():
 
 
 func reset_scene():
+	game_state = 0
 	$game_meta/ScoreTimer.stop()
 	$game_meta/MobTimer.stop()
 	clear_mobs()
@@ -55,6 +61,7 @@ func new_game():
 	$Player.visible = true
 	get_node("game_meta/StartTimer").start()
 	$Sound/start_sound.play()
+	game_state = 1
 
 
 
@@ -101,6 +108,5 @@ func _on_player_hit():
 
 func _on_start_button_button_down():
 	new_game()
-	
-func _on_start_button_button_up():
-	pass
+
+

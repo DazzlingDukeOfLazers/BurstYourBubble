@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dg0xoqfe8kuej"]
+[gd_scene load_steps=19 format=3 uid="uid://dg0xoqfe8kuej"]
 
 [ext_resource type="Script" path="res://burst_your_bubble_rnd.gd" id="1_f7313"]
 [ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="2_wfa5i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="4_ph2i0"]
 [ext_resource type="Script" path="res://timer.gd" id="5_pqmqn"]
 [ext_resource type="Script" path="res://Score.gd" id="6_7xn75"]
+[ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="7_2pj8a"]
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="7_85j86"]
 [ext_resource type="AudioStream" uid="uid://lm5bhoo2gqob" path="res://audio/uded.ogg" id="8_7663h"]
 [ext_resource type="AudioStream" uid="uid://b14wcne1n1cv4" path="res://audio/door_open.ogg" id="9_k8mhu"]
@@ -31,6 +32,13 @@ font = SubResource("SystemFont_dh8ug")
 font_size = 189
 shadow_color = Color(0.831373, 0, 0, 0.792157)
 
+[sub_resource type="InputEventAction" id="InputEventAction_yh35o"]
+action = &"start_game"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_sjyji"]
+events = [SubResource("InputEventAction_yh35o")]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_f7313")
 mob_scene = ExtResource("2_wfa5i")
@@ -53,7 +61,7 @@ wait_time = 0.5
 [node name="ScoreTimer" type="Timer" parent="game_meta"]
 
 [node name="StartTimer" type="Timer" parent="game_meta"]
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true
 
 [node name="MobPath" type="Path2D" parent="game_meta"]
@@ -121,8 +129,10 @@ offset_right = 67.0
 offset_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_sjyji")
 texture_normal = ExtResource("3_mt7s7")
 texture_pressed = ExtResource("4_ph2i0")
+texture_hover = ExtResource("7_2pj8a")
 
 [node name="Sound" type="Node" parent="."]
 
