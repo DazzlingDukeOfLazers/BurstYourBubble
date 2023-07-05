@@ -35,6 +35,7 @@ func game_over():
 	reset_scene()
 	$Hud/start_button.visible = true 
 	$Hud/uded.visible = true
+	$Sound/death_sound.play()
 
 
 func reset_scene():
@@ -49,15 +50,11 @@ func reset_scene():
 	$Player.visible = false
 	score = 0
 	
-	
-
-
 func new_game():
 	reset_scene()
 	$Player.visible = true
-	
 	get_node("game_meta/StartTimer").start()
-	
+	$Sound/start_sound.play()
 
 
 
@@ -103,7 +100,6 @@ func _on_player_hit():
 
 
 func _on_start_button_button_down():
-	game_over()
 	new_game()
 	
 func _on_start_button_button_up():

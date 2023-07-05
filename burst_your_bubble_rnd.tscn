@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg0xoqfe8kuej"]
+[gd_scene load_steps=16 format=3 uid="uid://dg0xoqfe8kuej"]
 
 [ext_resource type="Script" path="res://burst_your_bubble_rnd.gd" id="1_f7313"]
 [ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="2_wfa5i"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://timer.gd" id="5_pqmqn"]
 [ext_resource type="Script" path="res://Score.gd" id="6_7xn75"]
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="7_85j86"]
+[ext_resource type="AudioStream" uid="uid://lm5bhoo2gqob" path="res://audio/uded.ogg" id="8_7663h"]
+[ext_resource type="AudioStream" uid="uid://b14wcne1n1cv4" path="res://audio/door_open.ogg" id="9_k8mhu"]
 
 [sub_resource type="Curve2D" id="Curve2D_ueypw"]
 _data = {
@@ -121,6 +123,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("3_mt7s7")
 texture_pressed = ExtResource("4_ph2i0")
+
+[node name="Sound" type="Node" parent="."]
+
+[node name="death_sound" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("8_7663h")
+
+[node name="start_sound" type="AudioStreamPlayer" parent="Sound"]
+stream = ExtResource("9_k8mhu")
 
 [connection signal="timeout" from="game_meta/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="game_meta/ScoreTimer" to="." method="_on_score_timer_timeout"]
