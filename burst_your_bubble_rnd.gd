@@ -5,6 +5,7 @@ var score
 
 @onready var time_start = 0
 @onready var time_now = 0
+@onready var spawn_mobs = true
 
 var game_state = 0
 
@@ -76,29 +77,31 @@ func _on_start_timer_timeout():
 
 
 func _on_mob_timer_timeout():
-	# Create a new instance of the Mob scene.
-	var mob = mob_scene.instantiate()
+	
+	if self.spawn_mobs:
+		# Create a new instance of the Mob scene.
+		var mob = mob_scene.instantiate()
 
-	# Choose a random location on Path2D.
-	var mob_spawn_location = get_node("game_meta/MobPath/MobSpawnLocation")
-	mob_spawn_location.progress_ratio = randf()
+		# Choose a random location on Path2D.
+		var mob_spawn_location = get_node("game_meta/MobPath/MobSpawnLocation")
+		mob_spawn_location.progress_ratio = randf()
 
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
+		# Set the mob's direction perpendicular to the path direction.
+		var direction = mob_spawn_location.rotation + PI / 2
 
-	# Set the mob's position to a random location.
-	mob.position = mob_spawn_location.position
+		# Set the mob's position to a random location.
+		mob.position = mob_spawn_location.position
 
-	# Add some randomness to the direction.
-	direction += randf_range(-PI / 4, PI / 4)
-	mob.rotation = direction
+		# Add some randomness to the direction.
+		direction += randf_range(-PI / 4, PI / 4)
+		mob.rotation = direction
 
-	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-	mob.linear_velocity = velocity.rotated(direction)
+		# Choose the velocity for the mob.
+		var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
 
-	# Spawn the mob by adding it to the Main scene.
-	$mobs.add_child(mob)
+		# Spawn the mob by adding it to the Main scene.
+		$mobs.add_child(mob)
 
 
 func _on_player_hit():
@@ -110,3 +113,8 @@ func _on_start_button_button_down():
 	new_game()
 
 
+
+func _on_button_button_down():
+#	$Label.text = str(self.spawn_mobs)
+	$Label.text = "barbarbar"
+	self.spawn_mobs = !self.spawn_mobs
