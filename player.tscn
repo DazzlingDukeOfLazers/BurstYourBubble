@@ -30,7 +30,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_v43r0"]
 radius = 51.0392
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_q0p8s")
 metadata/_edit_group_ = true
@@ -42,5 +42,3 @@ animation = &"up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v43r0")
 debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

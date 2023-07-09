@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 signal hit
 
@@ -12,15 +12,15 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
+	velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
+		velocity.x += 100
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
+		velocity.x -= 100
 	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
+		velocity.y += 100
 	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+		velocity.y -= 100
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -28,9 +28,10 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.stop()
 		
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+#	position += velocity * delta
+#	position.x = clamp(position.x, 0, screen_size.x)
+#	position.y = clamp(position.y, 0, screen_size.y)
+	move_and_slide()
 	
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
@@ -60,9 +61,14 @@ func start(pos):
 
 
 func _on_body_entered(_body):
-	hide()
-#	self.visible = false # Player disappears after being hit.
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred(&"disabled", true)
+	
+	
+	if true:
+#	if get_colliding_bodies.is_in_group("mobs"):
+		
+		hide()
+	#	self.visible = false # Player disappears after being hit.
+		hit.emit()
+		# Must be deferred as we can't change physics properties on a physics callback.
+		$CollisionShape2D.set_deferred(&"disabled", true)
 
