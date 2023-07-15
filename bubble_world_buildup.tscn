@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bao78ops68euv"]
+[gd_scene load_steps=21 format=3 uid="uid://bao78ops68euv"]
 
 [ext_resource type="Script" path="res://bubble world buildup_rnd.gd" id="1_18rsg"]
 [ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="2_yhmrc"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://lm5bhoo2gqob" path="res://audio/uded.ogg" id="9_wlbiy"]
 [ext_resource type="AudioStream" uid="uid://b14wcne1n1cv4" path="res://audio/door_open.ogg" id="10_a6sel"]
 [ext_resource type="PackedScene" uid="uid://bketse25474em" path="res://spawn_trigger.tscn" id="11_8piju"]
+[ext_resource type="Script" path="res://thing.gd" id="12_l52ko"]
 
 [sub_resource type="Curve2D" id="Curve2D_ueypw"]
 _data = {
@@ -159,6 +160,9 @@ offset_top = 378.0
 offset_right = 1709.0
 offset_bottom = 386.0
 text = "spawn mobs"
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("12_l52ko")
 
 [connection signal="timeout" from="game_meta/MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="game_meta/ScoreTimer" to="." method="_on_score_timer_timeout"]

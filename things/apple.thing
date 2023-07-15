@@ -1,0 +1,12 @@
+{
+    "name": "apple",
+    "attributes": {
+      "description": "fruit, often red or green, sweet or tart",
+      "mass": "1.1",
+      "density": "1.0",
+      "lenght": "2.0",
+      "width": "1.0",
+      "height": "1.0",
+      "color": "ff00ff"
+    }
+  }
