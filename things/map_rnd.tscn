@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://x81b8y7peo6s"]
+
+[ext_resource type="Texture2D" uid="uid://b7d11pvu5rsii" path="res://svg/cow_2.svg" id="1_k8isv"]
+[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="2_vyv8c"]
+
+[sub_resource type="Gradient" id="Gradient_k50l5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2n871"]
+gradient = SubResource("Gradient_k50l5")
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(278, 212)
+
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(681, 331)
+scale = Vector2(29.9063, 17.2188)
+texture = SubResource("GradientTexture2D_2n871")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(752, 230)
+texture = ExtResource("1_k8isv")
+
+[node name="Player" parent="." instance=ExtResource("2_vyv8c")]

@@ -36,10 +36,11 @@ func dir_contents(path):
 		while file_name != "":
 			if dir.current_is_dir():
 				print("Found directory: " + file_name)
+				dir_contents(file_name)
 			else:
 				print("Found file: " + file_name)
 				if ".tscn" in file_name:
-					my_list.add_item(file_name)
+					my_list.add_item(path + "/" + file_name)
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")
