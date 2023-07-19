@@ -5,21 +5,6 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-#	my_list.add_item("bar")
-#	my_list.add_item("blip")
-	
-	
-#	var root = my_tree.create_item()
-#	tree.hide_root = true
-	
-#	root.set_text(0,"foo")
-	
-#	var child1 = tree.create_item(root)
-#	var _child2 = tree.create_item(root)
-#	var subchild1 = tree.create_item(child1)
-#	subchild1.set_text(0, "Subchild1")
-
 	dir_contents(".")
 
 

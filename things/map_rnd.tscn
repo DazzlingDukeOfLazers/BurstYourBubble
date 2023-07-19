@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://x81b8y7peo6s"]
+[gd_scene load_steps=9 format=3 uid="uid://x81b8y7peo6s"]
 
 [ext_resource type="Texture2D" uid="uid://b7d11pvu5rsii" path="res://svg/cow_2.svg" id="1_k8isv"]
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="2_vyv8c"]
+[ext_resource type="Texture2D" uid="uid://bgafaeqbt4ktv" path="res://svg/water.svg" id="3_nwtiq"]
+[ext_resource type="Texture2D" uid="uid://b0ny2dyh0hb3r" path="res://svg/town.svg" id="4_linwo"]
 
 [sub_resource type="Gradient" id="Gradient_k50l5"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2n871"]
 gradient = SubResource("Gradient_k50l5")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcq6c"]
+radius = 27.074
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7h7et"]
+radius = 55.3263
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(278, 212)
@@ -22,3 +30,54 @@ position = Vector2(752, 230)
 texture = ExtResource("1_k8isv")
 
 [node name="Player" parent="." instance=ExtResource("2_vyv8c")]
+
+[node name="Lake" type="Node" parent="."]
+
+[node name="water" type="StaticBody2D" parent="Lake"]
+position = Vector2(390, 137)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lake/water"]
+texture = ExtResource("3_nwtiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/water"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_jcq6c")
+
+[node name="water2" type="StaticBody2D" parent="Lake"]
+position = Vector2(315, 116)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lake/water2"]
+texture = ExtResource("3_nwtiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/water2"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_jcq6c")
+
+[node name="water3" type="StaticBody2D" parent="Lake"]
+position = Vector2(239, 116)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lake/water3"]
+texture = ExtResource("3_nwtiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/water3"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_jcq6c")
+
+[node name="water4" type="StaticBody2D" parent="Lake"]
+position = Vector2(170, 187)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lake/water4"]
+texture = ExtResource("3_nwtiq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/water4"]
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_jcq6c")
+
+[node name="water5" type="StaticBody2D" parent="Lake"]
+position = Vector2(688, 323)
+
+[node name="Sprite2D" type="Sprite2D" parent="Lake/water5"]
+texture = ExtResource("4_linwo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/water5"]
+shape = SubResource("CircleShape2D_7h7et")
