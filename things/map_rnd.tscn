@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://x81b8y7peo6s"]
+[gd_scene load_steps=10 format=3 uid="uid://x81b8y7peo6s"]
 
 [ext_resource type="Texture2D" uid="uid://b7d11pvu5rsii" path="res://svg/cow_2.svg" id="1_k8isv"]
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="2_vyv8c"]
 [ext_resource type="Texture2D" uid="uid://bgafaeqbt4ktv" path="res://svg/water.svg" id="3_nwtiq"]
+[ext_resource type="PackedScene" uid="uid://blsy51xh4rtad" path="res://things/hud.tscn" id="4_4qotv"]
 [ext_resource type="Texture2D" uid="uid://b0ny2dyh0hb3r" path="res://svg/town.svg" id="4_linwo"]
 
 [sub_resource type="Gradient" id="Gradient_k50l5"]
@@ -63,6 +64,8 @@ texture = ExtResource("3_nwtiq")
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_jcq6c")
 
+[node name="Hud" parent="Lake/water3" instance=ExtResource("4_4qotv")]
+
 [node name="water4" type="StaticBody2D" parent="Lake"]
 position = Vector2(170, 187)
 
@@ -81,3 +84,5 @@ texture = ExtResource("4_linwo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/water5"]
 shape = SubResource("CircleShape2D_7h7et")
+
+[node name="Hud" parent="." instance=ExtResource("4_4qotv")]
