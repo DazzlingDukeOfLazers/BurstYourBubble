@@ -15,6 +15,12 @@ func _process(delta):
 	pass
 
 
-func _on_button_button_down():
+func _toggle_code_visibiliy():
+	# Toggle code window visibility
 	self.visible = !self.visible
-	pass # Replace with function body.
+	get_node("../code_bg").visible = self.visible
+
+func _on_button_button_down():
+	_toggle_code_visibiliy()
+	
+

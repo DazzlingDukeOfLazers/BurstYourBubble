@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://blsy51xh4rtad"]
+[gd_scene load_steps=17 format=3 uid="uid://blsy51xh4rtad"]
 
 [ext_resource type="Script" path="res://timer.gd" id="1_u6jet"]
 [ext_resource type="Script" path="res://Score.gd" id="2_44bok"]
@@ -32,7 +32,18 @@ pressed = true
 [sub_resource type="Shortcut" id="Shortcut_sjyji"]
 events = [SubResource("InputEventAction_yh35o")]
 
+[sub_resource type="Gradient" id="Gradient_vjx08"]
+offsets = PackedFloat32Array(0.133663, 0.519802, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_twitg"]
+gradient = SubResource("Gradient_vjx08")
+fill_from = Vector2(0.527439, 0.198171)
+fill_to = Vector2(0.527439, 0)
+
 [node name="Hud" type="Node"]
+metadata/_edit_vertical_guides_ = [151.0, 1368.0]
+metadata/_edit_horizontal_guides_ = [125.0, 965.0, 992.0]
 
 [node name="Timer" type="Label" parent="."]
 anchors_preset = 1
@@ -101,11 +112,17 @@ icon = ExtResource("6_mo2iv")
 
 [node name="meta" type="Node" parent="."]
 
+[node name="code_bg" type="Sprite2D" parent="meta"]
+visible = false
+position = Vector2(746, 558.5)
+scale = Vector2(19.4375, 14.1719)
+texture = SubResource("GradientTexture2D_twitg")
+
 [node name="scene-code" type="RichTextLabel" parent="meta"]
 visible = false
 offset_left = 151.0
 offset_top = 125.0
-offset_right = 1668.0
+offset_right = 1368.0
 offset_bottom = 992.0
 text = "foo"
 script = ExtResource("7_46230")
