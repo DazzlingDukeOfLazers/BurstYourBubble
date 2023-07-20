@@ -118,6 +118,13 @@ position = Vector2(746, 558.5)
 scale = Vector2(19.4375, 14.1719)
 texture = SubResource("GradientTexture2D_twitg")
 
+[node name="OtherFiles" type="ItemList" parent="meta"]
+visible = false
+offset_left = 1368.0
+offset_top = 105.0
+offset_right = 1850.0
+offset_bottom = 1012.0
+
 [node name="scene-code" type="RichTextLabel" parent="meta"]
 visible = false
 offset_left = 151.0
