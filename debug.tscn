@@ -1,12 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt5mn60gqn25"]
+[gd_scene load_steps=3 format=3 uid="uid://dt5mn60gqn25"]
 
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="1_oeuvy"]
-[ext_resource type="Script" path="res://things/wand.gd" id="2_pfx6a"]
-
-[sub_resource type="Gradient" id="Gradient_rrchd"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ld6vm"]
-gradient = SubResource("Gradient_rrchd")
+[ext_resource type="PackedScene" uid="uid://bdov6pjnjdhta" path="res://tools/wand.tscn" id="2_3nne5"]
 
 [node name="root" type="Node2D"]
 
@@ -19,8 +14,4 @@ offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0.901961, 0.792157, 0.94902, 1)
 
-[node name="wand" type="Node2D" parent="."]
-script = ExtResource("2_pfx6a")
-
-[node name="selectionSprite" type="Sprite2D" parent="wand"]
-texture = SubResource("GradientTexture2D_ld6vm")
+[node name="wand" parent="." instance=ExtResource("2_3nne5")]
