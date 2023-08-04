@@ -12,3 +12,7 @@ script = ExtResource("1_otkyd")
 
 [node name="selectionSprite" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_ld6vm")
+
+[node name="charge_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

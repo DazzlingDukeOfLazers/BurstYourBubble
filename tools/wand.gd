@@ -10,6 +10,16 @@ func _ready():
 	pass # Replace with function body.
 
 
+func use():
+	
+	if $charge_timer.is_stopped():
+		var new_thing = load("res://things/water.tscn").instantiate()
+		new_thing.position = get_node("..").position + target
+		get_node("../../world").add_child(new_thing)
+		$charge_timer.start()
+		
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_pressed("move_right"):
@@ -25,9 +35,7 @@ func _process(_delta):
 		target = Vector2(0,-96)
 		position = target
 	if Input.is_key_pressed(KEY_SPACE):
-		var new_thing = load("res://things/water.tscn").instantiate()
-		new_thing.position = get_node("..").position + target
-		get_node("../../world").add_child(new_thing)
+		use()
 		pass
 		
 
