@@ -1,18 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdov6pjnjdhta"]
+[gd_scene load_steps=7 format=3 uid="uid://bdov6pjnjdhta"]
 
 [ext_resource type="Script" path="res://tools/wand.gd" id="1_otkyd"]
 
-[sub_resource type="Gradient" id="Gradient_rrchd"]
+[sub_resource type="Gradient" id="Gradient_0br2g"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_668ii"]
+gradient = SubResource("Gradient_0br2g")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0qqc"]
+radius = 32.0
+
+[sub_resource type="Gradient" id="Gradient_nl56o"]
+colors = PackedColorArray(0.845918, 0.437126, 0.894653, 1, 0.301589, 6.63745e-05, 0.304967, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ld6vm"]
-gradient = SubResource("Gradient_rrchd")
+gradient = SubResource("Gradient_nl56o")
+fill = 1
+fill_from = Vector2(0.481707, 0.506098)
 
 [node name="wand" type="Node2D"]
 script = ExtResource("1_otkyd")
 
 [node name="selectionSprite" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_ld6vm")
+texture = SubResource("GradientTexture2D_668ii")
 
 [node name="charge_timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_q0qqc")
+
+[node name="objectDetectSprite" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("GradientTexture2D_ld6vm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

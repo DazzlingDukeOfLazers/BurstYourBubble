@@ -2,11 +2,13 @@ extends Node2D
 
 @export var water_scene: PackedScene
 
+
 signal hit
 
 var target : Vector2
 
 func _ready():
+	$objectDetectSprite.visible = false
 	pass # Replace with function body.
 
 
@@ -44,3 +46,31 @@ func start(pos):
 	self.position = pos.position
 	$CollisionShape2D.set_deferred(&"disabled", false)
 
+
+
+func _on_area_2d_area_entered(area):
+	$objectDetectSprite.visibile = true
+	pass # Replace with function body.
+
+
+func _on_area_2d_area_exited(area):
+	$objectDetectSprite.visible = false
+	pass # Replace with function body.
+
+
+
+
+
+func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	$objectDetectSprite.visibile = true
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_entered(body):
+	$objectDetectSprite.visible = true
+	pass # Replace with function body.
+
+
+func _on_area_2d_body_exited(body):
+	$objectDetectSprite.visible = false
+	pass # Replace with function body.
