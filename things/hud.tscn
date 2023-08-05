@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://blsy51xh4rtad"]
+[gd_scene load_steps=19 format=3 uid="uid://blsy51xh4rtad"]
 
 [ext_resource type="Script" path="res://timer.gd" id="1_u6jet"]
 [ext_resource type="Script" path="res://Score.gd" id="2_44bok"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="5_010tu"]
 [ext_resource type="Texture2D" uid="uid://c8a618ethmue5" path="res://svg/tandem.svg" id="6_mo2iv"]
 [ext_resource type="Script" path="res://things/scene-code.gd" id="7_46230"]
+[ext_resource type="PackedScene" uid="uid://ds3v26ffbkuyq" path="res://things/water.tscn" id="8_b01uy"]
+[ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="9_1pjvd"]
 
 [sub_resource type="SystemFont" id="SystemFont_236ut"]
 subpixel_positioning = 0
@@ -42,8 +44,6 @@ fill_from = Vector2(0.527439, 0.198171)
 fill_to = Vector2(0.527439, 0)
 
 [node name="Hud" type="Node"]
-metadata/_edit_vertical_guides_ = [151.0, 1368.0]
-metadata/_edit_horizontal_guides_ = [125.0, 965.0, 992.0]
 
 [node name="Timer" type="Label" parent="."]
 anchors_preset = 1
@@ -135,5 +135,26 @@ offset_right = 1368.0
 offset_bottom = 992.0
 text = "foo"
 script = ExtResource("7_46230")
+
+[node name="hotbar" type="Node2D" parent="."]
+position = Vector2(960, 1000)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hotbar"]
+custom_minimum_size = Vector2(64, 54)
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="hotbar/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="water" parent="hotbar/HBoxContainer/PanelContainer" instance=ExtResource("8_b01uy")]
+
+[node name="PanelContainer2" type="PanelContainer" parent="hotbar/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Mob" parent="hotbar/HBoxContainer/PanelContainer2" instance=ExtResource("9_1pjvd")]
 
 [connection signal="button_down" from="Button" to="meta/scene-code" method="_on_button_button_down"]

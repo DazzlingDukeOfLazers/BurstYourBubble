@@ -36,6 +36,7 @@ texture = ExtResource("1_k8isv")
 position = Vector2(-276, -212)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
 
 [node name="wand" parent="Player" instance=ExtResource("6_trjav")]
 
@@ -64,8 +65,6 @@ texture = ExtResource("3_nwtiq")
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_jcq6c")
 
-[node name="Hud" parent="Lake/water3" instance=ExtResource("4_4qotv")]
-
 [node name="water4" type="StaticBody2D" parent="Lake"]
 position = Vector2(170, 187)
 
@@ -85,6 +84,8 @@ texture = ExtResource("4_linwo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/water5"]
 shape = SubResource("CircleShape2D_7h7et")
 
-[node name="Hud" parent="." instance=ExtResource("4_4qotv")]
-
 [node name="world" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("4_4qotv")]
