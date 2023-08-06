@@ -1,28 +1,28 @@
-[gd_scene load_steps=19 format=3 uid="uid://blsy51xh4rtad"]
+[gd_scene load_steps=19 format=3 uid="uid://dfdjru07q6xxm"]
 
-[ext_resource type="Script" path="res://timer.gd" id="1_u6jet"]
-[ext_resource type="Script" path="res://Score.gd" id="2_44bok"]
-[ext_resource type="Texture2D" uid="uid://3sjtoj6o0qdm" path="res://svg/brick.svg" id="3_ndlmt"]
-[ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="4_fsx8c"]
-[ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="5_010tu"]
-[ext_resource type="Texture2D" uid="uid://c8a618ethmue5" path="res://svg/tandem.svg" id="6_mo2iv"]
-[ext_resource type="Script" path="res://things/scene-code.gd" id="7_46230"]
-[ext_resource type="PackedScene" uid="uid://ds3v26ffbkuyq" path="res://things/water.tscn" id="8_b01uy"]
-[ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="9_1pjvd"]
+[ext_resource type="Script" path="res://Score.gd" id="1_pcpam"]
+[ext_resource type="Script" path="res://timer.gd" id="2_32hx2"]
+[ext_resource type="Texture2D" uid="uid://3sjtoj6o0qdm" path="res://svg/brick.svg" id="3_aha7c"]
+[ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="4_6imiv"]
+[ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="5_xkkb5"]
+[ext_resource type="Texture2D" uid="uid://c8a618ethmue5" path="res://svg/tandem.svg" id="6_du53u"]
+[ext_resource type="Script" path="res://things/scene-code.gd" id="7_tq6wv"]
+[ext_resource type="PackedScene" uid="uid://ds3v26ffbkuyq" path="res://things/water.tscn" id="8_ti3sa"]
+[ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="9_o6rvd"]
 
-[sub_resource type="SystemFont" id="SystemFont_236ut"]
+[sub_resource type="SystemFont" id="SystemFont_c4jp7"]
 subpixel_positioning = 0
 
 [sub_resource type="FontVariation" id="FontVariation_0fv2f"]
-base_font = SubResource("SystemFont_236ut")
+base_font = SubResource("SystemFont_c4jp7")
 
-[sub_resource type="Theme" id="Theme_q7lke"]
+[sub_resource type="Theme" id="Theme_ujd4b"]
 /fonts/bar = SubResource("FontVariation_0fv2f")
 
 [sub_resource type="SystemFont" id="SystemFont_dh8ug"]
 subpixel_positioning = 0
 
-[sub_resource type="LabelSettings" id="LabelSettings_0qvyv"]
+[sub_resource type="LabelSettings" id="LabelSettings_0nys4"]
 font = SubResource("SystemFont_dh8ug")
 font_size = 189
 shadow_color = Color(0.831373, 0, 0, 0.792157)
@@ -31,19 +31,28 @@ shadow_color = Color(0.831373, 0, 0, 0.792157)
 action = &"start_game"
 pressed = true
 
-[sub_resource type="Shortcut" id="Shortcut_sjyji"]
+[sub_resource type="Shortcut" id="Shortcut_ulvb0"]
 events = [SubResource("InputEventAction_yh35o")]
 
 [sub_resource type="Gradient" id="Gradient_vjx08"]
 offsets = PackedFloat32Array(0.133663, 0.519802, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_twitg"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iilso"]
 gradient = SubResource("Gradient_vjx08")
 fill_from = Vector2(0.527439, 0.198171)
 fill_to = Vector2(0.527439, 0)
 
-[node name="Hud" type="Node"]
+[node name="hud" type="CanvasLayer"]
+
+[node name="coins" type="Label" parent="."]
+offset_left = 1863.0
+offset_top = 80.0
+offset_right = 1903.0
+offset_bottom = 106.0
+text = "-1"
+horizontal_alignment = 2
+script = ExtResource("1_pcpam")
 
 [node name="Timer" type="Label" parent="."]
 anchors_preset = 1
@@ -56,7 +65,7 @@ offset_bottom = 43.0
 grow_horizontal = 0
 text = "foo"
 horizontal_alignment = 2
-script = ExtResource("1_u6jet")
+script = ExtResource("2_32hx2")
 
 [node name="Score" type="Label" parent="."]
 offset_left = 1863.0
@@ -65,7 +74,16 @@ offset_right = 1903.0
 offset_bottom = 80.0
 text = "-1"
 horizontal_alignment = 2
-script = ExtResource("2_44bok")
+script = ExtResource("1_pcpam")
+
+[node name="coins2" type="Label" parent="."]
+offset_left = 1863.0
+offset_top = 80.0
+offset_right = 1903.0
+offset_bottom = 106.0
+text = "-1"
+horizontal_alignment = 2
+script = ExtResource("1_pcpam")
 
 [node name="uded" type="Label" parent="."]
 visible = false
@@ -81,9 +99,9 @@ offset_right = 257.0
 offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_q7lke")
+theme = SubResource("Theme_ujd4b")
 text = "u ded"
-label_settings = SubResource("LabelSettings_0qvyv")
+label_settings = SubResource("LabelSettings_0nys4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -100,17 +118,17 @@ offset_right = 67.0
 offset_bottom = 281.0
 grow_horizontal = 2
 grow_vertical = 2
-shortcut = SubResource("Shortcut_sjyji")
-texture_normal = ExtResource("3_ndlmt")
-texture_pressed = ExtResource("4_fsx8c")
-texture_hover = ExtResource("5_010tu")
+shortcut = SubResource("Shortcut_ulvb0")
+texture_normal = ExtResource("3_aha7c")
+texture_pressed = ExtResource("4_6imiv")
+texture_hover = ExtResource("5_xkkb5")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 1775.0
 offset_top = 965.0
 offset_right = 1883.0
 offset_bottom = 1042.0
-icon = ExtResource("6_mo2iv")
+icon = ExtResource("6_du53u")
 
 [node name="meta" type="Node" parent="."]
 
@@ -118,7 +136,7 @@ icon = ExtResource("6_mo2iv")
 visible = false
 position = Vector2(746, 558.5)
 scale = Vector2(19.4375, 14.1719)
-texture = SubResource("GradientTexture2D_twitg")
+texture = SubResource("GradientTexture2D_iilso")
 
 [node name="OtherFiles" type="ItemList" parent="meta"]
 visible = false
@@ -134,7 +152,7 @@ offset_top = 125.0
 offset_right = 1368.0
 offset_bottom = 992.0
 text = "foo"
-script = ExtResource("7_46230")
+script = ExtResource("7_tq6wv")
 
 [node name="hotbar" type="Node2D" parent="."]
 position = Vector2(960, 1000)
@@ -149,12 +167,12 @@ alignment = 1
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="water" parent="hotbar/HBoxContainer/PanelContainer" instance=ExtResource("8_b01uy")]
+[node name="water" parent="hotbar/HBoxContainer/PanelContainer" instance=ExtResource("8_ti3sa")]
 
 [node name="PanelContainer2" type="PanelContainer" parent="hotbar/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 
-[node name="Mob" parent="hotbar/HBoxContainer/PanelContainer2" instance=ExtResource("9_1pjvd")]
+[node name="Mob" parent="hotbar/HBoxContainer/PanelContainer2" instance=ExtResource("9_o6rvd")]
 
 [connection signal="button_down" from="Button" to="meta/scene-code" method="_on_button_button_down"]

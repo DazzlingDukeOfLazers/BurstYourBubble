@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 signal hit
 
+var coin_count:int = 0
+
 @export var speed = 400 # pixels / sec
 @onready var screen_size
 # Called when the node enters the scene tree for the first time.
@@ -72,3 +74,9 @@ func _on_body_entered(_body):
 		# Must be deferred as we can't change physics properties on a physics callback.
 		$CollisionShape2D.set_deferred(&"disabled", true)
 
+
+
+func _on_pickup_area_2d_area_entered(area):
+	if area.name.begins_with("coin"):
+		coin_count += 1
+		area.queue_free()

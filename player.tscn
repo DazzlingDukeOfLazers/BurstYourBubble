@@ -42,3 +42,11 @@ animation = &"up"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v43r0")
 debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[node name="pickupArea2D" type="Area2D" parent="."]
+
+[node name="pickupCollisionShape2D" type="CollisionShape2D" parent="pickupArea2D"]
+shape = SubResource("CircleShape2D_v43r0")
+debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[connection signal="area_entered" from="pickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]

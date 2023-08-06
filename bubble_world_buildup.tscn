@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://bubble world buildup_rnd.gd" id="1_18rsg"]
 [ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="2_yhmrc"]
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="3_1effy"]
-[ext_resource type="PackedScene" uid="uid://blsy51xh4rtad" path="res://things/hud.tscn" id="4_ya83v"]
+[ext_resource type="PackedScene" uid="uid://dfdjru07q6xxm" path="res://things/hud.tscn" id="4_ya83v"]
 [ext_resource type="AudioStream" uid="uid://lm5bhoo2gqob" path="res://audio/uded.ogg" id="9_wlbiy"]
 [ext_resource type="AudioStream" uid="uid://b14wcne1n1cv4" path="res://audio/door_open.ogg" id="10_a6sel"]
 [ext_resource type="PackedScene" uid="uid://bketse25474em" path="res://spawn_trigger.tscn" id="11_8piju"]
