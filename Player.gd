@@ -55,4 +55,5 @@ func _on_body_entered(_body):
 func _on_pickup_area_2d_area_entered(area):
 	if area.name.begins_with("coin"):
 		coin_count += 1
+		get_node("../hud/coins").set_value(coin_count)
 		area.queue_free()

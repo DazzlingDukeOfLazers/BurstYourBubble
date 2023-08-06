@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dfdjru07q6xxm"]
+[gd_scene load_steps=20 format=3 uid="uid://dfdjru07q6xxm"]
 
+[ext_resource type="Script" path="res://things/hud.gd" id="1_eipve"]
 [ext_resource type="Script" path="res://Score.gd" id="1_pcpam"]
 [ext_resource type="Script" path="res://timer.gd" id="2_32hx2"]
 [ext_resource type="Texture2D" uid="uid://3sjtoj6o0qdm" path="res://svg/brick.svg" id="3_aha7c"]
@@ -44,6 +45,7 @@ fill_from = Vector2(0.527439, 0.198171)
 fill_to = Vector2(0.527439, 0)
 
 [node name="hud" type="CanvasLayer"]
+script = ExtResource("1_eipve")
 
 [node name="coins" type="Label" parent="."]
 offset_left = 1863.0
@@ -72,15 +74,6 @@ offset_left = 1863.0
 offset_top = 54.0
 offset_right = 1903.0
 offset_bottom = 80.0
-text = "-1"
-horizontal_alignment = 2
-script = ExtResource("1_pcpam")
-
-[node name="coins2" type="Label" parent="."]
-offset_left = 1863.0
-offset_top = 80.0
-offset_right = 1903.0
-offset_bottom = 106.0
 text = "-1"
 horizontal_alignment = 2
 script = ExtResource("1_pcpam")
