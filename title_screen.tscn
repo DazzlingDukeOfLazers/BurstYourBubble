@@ -1,7 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6umvxca8nhr8"]
+[gd_scene load_steps=15 format=3 uid="uid://b6umvxca8nhr8"]
 
 [ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="1_isstq"]
+[ext_resource type="Script" path="res://menu.gd" id="2_lb221"]
 [ext_resource type="FontFile" uid="uid://bvilsgrpmn828" path="res://fonts/Lemon-Regular.ttf" id="2_u4chg"]
+[ext_resource type="Theme" uid="uid://b0asnf5kt53ml" path="res://title_menu_theme.tres" id="3_b6fww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyl36"]
+size = Vector2(199.5, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvfq3"]
+size = Vector2(522, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbi30"]
+size = Vector2(1927, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ofp2"]
+size = Vector2(302, 1073)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6qcc"]
+size = Vector2(194, 1082.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gx0qj"]
+size = Vector2(1929, 40)
 
 [sub_resource type="Theme" id="Theme_c181a"]
 Label/font_sizes/font_size = 180
@@ -21,50 +41,123 @@ size = Vector2(452, 152)
 [node name="Player" parent="." instance=ExtResource("1_isstq")]
 position = Vector2(800, 811)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="menu" type="Node2D" parent="."]
+script = ExtResource("2_lb221")
+
+[node name="instructions" type="Node2D" parent="menu"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="menu/instructions"]
+mass = 1000.0
+gravity_scale = 2.66454e-15
+
+[node name="mooGameLabel" type="Label" parent="menu/instructions/RigidBody2D"]
+offset_left = 1376.0
+offset_top = 811.0
+offset_right = 1901.0
+offset_bottom = 951.0
+theme = ExtResource("3_b6fww")
+text = "Moo Game"
+horizontal_alignment = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="menu/instructions/RigidBody2D"]
+position = Vector2(161.25, 886)
+shape = SubResource("RectangleShape2D_gyl36")
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="menu/instructions"]
+mass = 1000.0
+gravity_scale = 2.66454e-15
+
+[node name="Label" type="Label" parent="menu/instructions/RigidBody2D2"]
+offset_left = 60.0
+offset_top = 811.0
+offset_right = 259.0
+offset_bottom = 951.0
+theme = ExtResource("3_b6fww")
+text = "files"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="menu/instructions/RigidBody2D2"]
+position = Vector2(1641, 883.5)
+shape = SubResource("RectangleShape2D_fvfq3")
+
+[node name="areaTriggers" type="Node2D" parent="menu"]
+
+[node name="top" type="Area2D" parent="menu/areaTriggers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="menu/areaTriggers/top"]
+position = Vector2(957, 28)
+shape = SubResource("RectangleShape2D_jbi30")
+
+[node name="left" type="Area2D" parent="menu/areaTriggers"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="menu/areaTriggers/left"]
+position = Vector2(148, 535)
+shape = SubResource("RectangleShape2D_7ofp2")
+
+[node name="right" type="Area2D" parent="menu/areaTriggers"]
+position = Vector2(1918, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="menu/areaTriggers/right"]
+position = Vector2(-97, 540.75)
+shape = SubResource("RectangleShape2D_w6qcc")
+
+[node name="bottom" type="Area2D" parent="menu/areaTriggers"]
+position = Vector2(0, 1074)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="menu/areaTriggers/bottom"]
+position = Vector2(957, 0)
+shape = SubResource("RectangleShape2D_gx0qj")
+
+[node name="Title" type="Node2D" parent="."]
+
+[node name="moo" type="RigidBody2D" parent="Title"]
 position = Vector2(174, 98)
 mass = 0.01
 gravity_scale = 0.01
 
-[node name="titleLabel" type="Label" parent="RigidBody2D"]
+[node name="titleLabel" type="Label" parent="Title/moo"]
 offset_right = 481.0
 offset_bottom = 274.0
 theme = SubResource("Theme_c181a")
 text = "Moo"
 horizontal_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Title/moo"]
 position = Vector2(240.5, 136.5)
 shape = SubResource("RectangleShape2D_8pfcn")
 
-[node name="game" type="RigidBody2D" parent="."]
+[node name="game" type="RigidBody2D" parent="Title"]
 position = Vector2(643, 158)
 mass = 0.01
 gravity_scale = 0.02
 
-[node name="2" type="Label" parent="game"]
+[node name="2" type="Label" parent="Title/game"]
 offset_right = 481.0
 offset_bottom = 274.0
 theme = SubResource("Theme_c181a")
 text = "Game"
 horizontal_alignment = 1
 
-[node name="CollisionShape2Db" type="CollisionShape2D" parent="game"]
+[node name="CollisionShape2Db" type="CollisionShape2D" parent="Title/game"]
 position = Vector2(291, 132)
 shape = SubResource("RectangleShape2D_kqw5d")
 
-[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+[node name="plus" type="RigidBody2D" parent="Title"]
 position = Vector2(1227, 240)
 mass = 0.01
-gravity_scale = 0.01
+gravity_scale = 0.03
 
-[node name="titleLabel" type="Label" parent="RigidBody2D2"]
+[node name="titleLabel" type="Label" parent="Title/plus"]
 offset_right = 481.0
 offset_bottom = 274.0
 theme = SubResource("Theme_c181a")
 text = "Plus"
 horizontal_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Title/plus"]
 position = Vector2(239, 121)
 shape = SubResource("RectangleShape2D_cg5qy")
+
+[connection signal="body_entered" from="menu/areaTriggers/top" to="menu" method="_on_top_body_entered"]
+[connection signal="body_entered" from="menu/areaTriggers/left" to="menu" method="_on_left_body_entered"]
+[connection signal="body_entered" from="menu/areaTriggers/right" to="menu" method="_on_right_body_entered"]
+[connection signal="body_entered" from="menu/areaTriggers/bottom" to="menu" method="_on_bottom_body_entered"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Burst Your Bubble"
-run/main_scene="res://main.tscn"
+run/main_scene="res://title_screen.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/bg_color=Color(0.913725, 0.494118, 0.835294, 1)
 boot_splash/show_image=false
