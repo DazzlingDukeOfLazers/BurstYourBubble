@@ -25,7 +25,7 @@ func foo():
 	print("foo")
 
 func set_player(player:CharacterBody2D):
-	print("menu.player, ", player)
+	print(self, "player, ", player)
 	player_node = player
 
 

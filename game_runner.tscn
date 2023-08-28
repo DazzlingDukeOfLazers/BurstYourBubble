@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://by1vmq4lh7725"]
+
+[ext_resource type="Script" path="res://game_runner.gd" id="1_l1lki"]
+[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="1_ryghn"]
+[ext_resource type="PackedScene" uid="uid://b6umvxca8nhr8" path="res://title_menu.tscn" id="2_xftav"]
+
+[node name="game_runner" type="Node2D"]
+script = ExtResource("1_l1lki")
+
+[node name="Player" parent="." instance=ExtResource("1_ryghn")]
+
+[node name="title_screen" parent="." instance=ExtResource("2_xftav")]
