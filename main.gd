@@ -2,9 +2,16 @@ extends Node2D
 
 @onready var my_list = $ItemList
 
+@onready var tree = $Tree2
+@onready var root = tree.create_item()
+@onready var folder_list = tree.create_item(root)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	root.set_text(0,"root")
+	folder_list.set_text(0,"folder_list")
 	dir_contents(".")
 
 
@@ -26,6 +33,13 @@ func dir_contents(path):
 				print("Found file: " + file_name)
 				if ".tscn" in file_name:
 					my_list.add_item(path + "/" + file_name)
+					
+					
+#					atree.hide_root = true
+					var child_node = tree.create_item(folder_list)
+					child_node.set_text(0, path+ "/" + file_name)
+
+
 			file_name = dir.get_next()
 	else:
 		print("An error occurred when trying to access the path.")

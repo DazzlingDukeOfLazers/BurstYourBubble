@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c4tsbmls6f08o"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GraphNode" type="GraphNode" parent="."]
+offset_left = 530.0
+offset_top = 147.0
+offset_right = 566.0
+offset_bottom = 201.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 349.0
+offset_bottom = 287.0
+
+[node name="Tree" type="Tree" parent="GridContainer"]
+layout_mode = 2
+columns = 4
