@@ -15,7 +15,6 @@ offset_bottom = 757.0
 
 [node name="Tree2" type="Tree" parent="."]
 custom_minimum_size = Vector2(100, 100)
-anchors_preset = -1
 offset_right = 569.0
 offset_bottom = 715.0
 size_flags_horizontal = 4

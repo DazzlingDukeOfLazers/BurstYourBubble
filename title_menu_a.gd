@@ -54,7 +54,7 @@ func _on_bottom_body_entered(body):
 		get_tree().reload_current_scene()
 
 
-func _on_top_body_entered(body):
+func _on_top_body_entered(_body):
 	pass
 #	if body == player_node:
 #		get_tree().reload_current_scene()

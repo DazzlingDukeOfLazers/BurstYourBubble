@@ -8,11 +8,11 @@ extends Tree
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	existing_svg_root.set_text(0, "Existing SVGs")
-	dir_contents(".")
+	dir_contents("./svg")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -27,7 +27,7 @@ func dir_contents(path):
 				dir_contents(file_name)
 			else:
 				print("Found file: " + file_name)
-				if ".tscn" in file_name:
+				if ".svg" in file_name:
 					var child_node = existing_svg_root.create_child()
 					child_node.set_text(0, path + "/" + file_name)
 					
