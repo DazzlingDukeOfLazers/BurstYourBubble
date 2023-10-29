@@ -1,18 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4tsbmls6f08o"]
+[gd_scene load_steps=4 format=3 uid="uid://c4tsbmls6f08o"]
 
 [ext_resource type="Script" path="res://svg_vbox.gd" id="1_4qe1p"]
 [ext_resource type="Script" path="res://existing_svg_tree.gd" id="1_lrpai"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xv8s0"]
+content_margin_left = 200.0
+content_margin_top = 200.0
+content_margin_right = 200.0
+content_margin_bottom = 200.0
+
 [node name="Node2D" type="Node2D"]
 
-[node name="svg_vbox" type="VBoxContainer" parent="."]
-offset_left = 1014.0
-offset_top = 144.0
-offset_right = 1393.0
-offset_bottom = 535.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1922.0
+offset_bottom = 1073.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xv8s0")
+
+[node name="svg_vbox" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
 script = ExtResource("1_4qe1p")
 
-[node name="existing_svg_tree" type="Tree" parent="svg_vbox"]
+[node name="existing_svg_tree" type="Tree" parent="MarginContainer/ScrollContainer/svg_vbox"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 column_titles_visible = true
