@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckewd5tjvl4rj"]
+
+[ext_resource type="Script" path="res://Control.gd" id="2"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2")
+
+[node name="Texture1" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 0.149
+anchor_bottom = 0.179
+
+[node name="Texture2" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 0.113
+anchor_bottom = 0.151
+
+[node name="CEF" type="GDCef" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+script = null
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[connection signal="gui_input" from="Texture1" to="." method="_on_Texture1_gui_input"]

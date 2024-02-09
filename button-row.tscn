@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo6bqowxc3117"]
+
+[ext_resource type="Theme" uid="uid://b0asnf5kt53ml" path="res://title_menu_theme.tres" id="1_wmpm0"]
+[ext_resource type="Script" path="res://Progress-button.gd" id="2_7kctc"]
+[ext_resource type="Texture2D" uid="uid://bsfoi0tqk6has" path="res://svg/bat.svg" id="3_gvfu0"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_right = 802.0
+offset_bottom = 282.0
+theme = ExtResource("1_wmpm0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_wmpm0")
+text = "Bats"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("2_7kctc")
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("3_gvfu0")
+icon_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 5.0
+
+[node name="meta_0" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "foo"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer" method="_on_button_pressed"]

@@ -1,0 +1,231 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbklyxmam8mjm"]
+
+[ext_resource type="PackedScene" uid="uid://bo6bqowxc3117" path="res://button-row.tscn" id="1_hhx5c"]
+[ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="2_hxr38"]
+[ext_resource type="Texture2D" uid="uid://bsfoi0tqk6has" path="res://svg/bat.svg" id="2_rd8lp"]
+[ext_resource type="Texture2D" uid="uid://bgafaeqbt4ktv" path="res://svg/water.svg" id="3_rf8b0"]
+[ext_resource type="Texture2D" uid="uid://tl0kfelajva2" path="res://svg/forest.svg" id="3_sgkrj"]
+
+[sub_resource type="Curve" id="Curve_pf8vp"]
+max_value = 10.0
+_data = [Vector2(0, 1.11635), 0.0, 0.0, 0, 0, Vector2(0.99999, 9.57879), 0.0, 0.0, 0, 0, Vector2(1, 13.0108), -0.0189145, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_dv77j"]
+
+[sub_resource type="Curve" id="Curve_88joa"]
+min_value = 0.1
+max_value = 5.0
+_data = [Vector2(0, 0.1), 0.0, 0.725257, 0, 1, Vector2(1, 0.825257), 0.725257, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_y70oc"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.493892, 139.44), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_vertical_guides_ = [-71.0]
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="vanilla" type="Node2D" parent="background"]
+
+[node name="Control" type="Control" parent="background/vanilla"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="background/vanilla/Control"]
+custom_minimum_size = Vector2(2.08165e-12, 360)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 1.03922)
+color = Color(0.882353, 0, 0.905882, 1)
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+offset_top = 286.0
+offset_right = 802.0
+offset_bottom = 568.0
+
+[node name="VBoxContainer" parent="VBoxContainer2" instance=ExtResource("1_hhx5c")]
+layout_mode = 2
+
+[node name="VBoxContainer2" parent="VBoxContainer2" instance=ExtResource("1_hhx5c")]
+layout_mode = 2
+
+[node name="scenery" type="Node2D" parent="."]
+position = Vector2(1976, 780)
+
+[node name="CPUParticles2D8" type="CPUParticles2D" parent="scenery"]
+position = Vector2(0, 180)
+amount = 21
+lifetime = 14.87
+texture = ExtResource("3_sgkrj")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 533.14
+initial_velocity_max = 533.14
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_pf8vp")
+color = Color(0.141176, 0.560784, 0, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D9" type="CPUParticles2D" parent="scenery"]
+position = Vector2(0, 74)
+amount = 21
+lifetime = 14.87
+texture = ExtResource("3_sgkrj")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 400.0
+initial_velocity_max = 400.0
+color = Color(0.141176, 0.560784, 0, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D10" type="CPUParticles2D" parent="scenery"]
+amount = 21
+lifetime = 14.87
+texture = ExtResource("3_sgkrj")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+scale_amount_min = 0.5
+scale_amount_max = 0.5
+color = Color(0.141176, 0.560784, 0, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(995, 253)
+amount = 1
+texture = ExtResource("3_rf8b0")
+color = Color(1, 1, 0.184314, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
+position = Vector2(1172, 253)
+amount = 3
+texture = ExtResource("3_rf8b0")
+emission_shape = 3
+emission_rect_extents = Vector2(900, 10)
+color = Color(0.270588, 0.760784, 0.941176, 1)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+position = Vector2(1976, 159)
+amount = 12
+lifetime = 7.0
+texture = ExtResource("2_hxr38")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 270.85
+initial_velocity_max = 368.93
+color = Color(1, 0.384314, 1, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D8" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(844, 715)
+rotation = -0.785398
+amount = 12
+lifetime = 7.0
+texture = ExtResource("2_hxr38")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 59.78
+initial_velocity_max = 59.78
+scale_amount_curve = SubResource("Curve_88joa")
+color = Color(1, 0.384314, 1, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D8-2" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(1137, 720)
+rotation = -2.0944
+amount = 12
+lifetime = 7.0
+texture = ExtResource("2_hxr38")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 59.78
+initial_velocity_max = 59.78
+scale_amount_curve = SubResource("Curve_88joa")
+color = Color(1, 0.384314, 1, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D6" type="CPUParticles2D" parent="."]
+position = Vector2(1800, 709)
+amount = 12
+lifetime = 7.0
+texture = ExtResource("2_rd8lp")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 270.85
+initial_velocity_max = 368.93
+angular_velocity_max = 1.0
+angular_velocity_curve = SubResource("Curve_y70oc")
+orbit_velocity_max = 1.0
+color = Color(1, 0.384314, 1, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D7" type="CPUParticles2D" parent="."]
+position = Vector2(1747, 678)
+amount = 12
+lifetime = 7.0
+texture = ExtResource("2_rd8lp")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 270.85
+initial_velocity_max = 368.93
+angular_velocity_max = 1.0
+angular_velocity_curve = SubResource("Curve_y70oc")
+orbit_velocity_min = -1.0
+color = Color(0.427451, 0.788235, 0.278431, 1)
+color_ramp = SubResource("Gradient_dv77j")
+hue_variation_max = 0.44
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
+position = Vector2(2084, 208)
+amount = 11
+lifetime = 7.0
+texture = ExtResource("2_hxr38")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 270.85
+initial_velocity_max = 368.93
+
+[node name="CPUParticles2D5" type="CPUParticles2D" parent="."]
+visible = false
+position = Vector2(2084, 208)
+amount = 11
+lifetime = 7.0
+texture = ExtResource("2_hxr38")
+direction = Vector2(-1, 2.08165e-12)
+spread = 0.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 270.85
+initial_velocity_max = 368.93

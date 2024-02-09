@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://0oiubyru6nnd"]
+
+[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="1_rragi"]
+[ext_resource type="Texture2D" uid="uid://c13kkvsvgsquy" path="res://svg/taylor swift headArtboard 1.png" id="2_l7lvv"]
+[ext_resource type="PackedScene" uid="uid://dfvpj2tvxnort" path="res://peg.tscn" id="3_hlvbn"]
+[ext_resource type="PackedScene" uid="uid://b3vtotxi834vl" path="res://ball.tscn" id="4_558ay"]
+[ext_resource type="PackedScene" uid="uid://q1w412ug8a6a" path="res://tay-peg.tscn" id="5_8kcak"]
+
+[sub_resource type="Curve" id="Curve_hx30q"]
+max_value = 4.0
+_data = [Vector2(0, 1.04654), 0.0, 0.0, 0, 0, Vector2(1, 2.76701), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_rragi")]
+position = Vector2(396, 454)
+
+[node name="TaylorSwiftHeadArtboard1" type="Sprite2D" parent="Player"]
+position = Vector2(-74, 34)
+texture = ExtResource("2_l7lvv")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Player"]
+show_behind_parent = true
+position = Vector2(-71, 30)
+amount = 7
+lifetime = 2.0
+texture = ExtResource("2_l7lvv")
+gravity = Vector2(-800, 2.08165e-12)
+scale_amount_curve = SubResource("Curve_hx30q")
+color = Color(1, 0.537255, 1, 1)
+
+[node name="peg" parent="." instance=ExtResource("3_hlvbn")]
+position = Vector2(763, 504)
+
+[node name="peg2" parent="." instance=ExtResource("3_hlvbn")]
+position = Vector2(1009, 590)
+
+[node name="peg3" parent="." instance=ExtResource("3_hlvbn")]
+position = Vector2(1239, 548)
+
+[node name="peg4" parent="." instance=ExtResource("3_hlvbn")]
+position = Vector2(1467, 382)
+
+[node name="peg5" parent="." instance=ExtResource("3_hlvbn")]
+position = Vector2(587, 240)
+
+[node name="ball" parent="." instance=ExtResource("4_558ay")]
+position = Vector2(1006, 166)
+
+[node name="TaylorSwiftHeadArtboard1" type="Sprite2D" parent="ball"]
+position = Vector2(-74, 35)
+texture = ExtResource("2_l7lvv")
+
+[node name="peg6" parent="." instance=ExtResource("5_8kcak")]
+position = Vector2(587, 602)
+
+[node name="peg7" parent="." instance=ExtResource("5_8kcak")]
+position = Vector2(849, 720)
+
+[node name="peg8" parent="." instance=ExtResource("5_8kcak")]
+position = Vector2(1154, 751)
+rotation = -0.261799
+
+[node name="peg9" parent="." instance=ExtResource("5_8kcak")]
+position = Vector2(1420, 634)
+rotation = -0.261799

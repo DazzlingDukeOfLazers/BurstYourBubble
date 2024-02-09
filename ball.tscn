@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3vtotxi834vl"]
+
+[ext_resource type="Texture2D" uid="uid://c8a618ethmue5" path="res://svg/tandem.svg" id="1_djryh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tairn"]
+radius = 64.0
+
+[node name="ball" type="RigidBody2D"]
+position = Vector2(996, 0)
+constant_force = Vector2(4.51, 2.08165e-12)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_djryh")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_tairn")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tairn")

@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://q1w412ug8a6a"]
+
+[ext_resource type="Script" path="res://peg.gd" id="1_gkrv3"]
+[ext_resource type="Texture2D" uid="uid://c13kkvsvgsquy" path="res://svg/taylor swift headArtboard 1.png" id="2_2syyq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_inksu"]
+bounce = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0iddv"]
+radius = 64.0
+
+[sub_resource type="Curve" id="Curve_xdbp0"]
+max_value = 3.0
+_data = [Vector2(0, 1.47923), 0.0, 0.0, 0, 0, Vector2(0.935427, 3), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="peg" type="StaticBody2D"]
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_inksu")
+script = ExtResource("1_gkrv3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0iddv")
+
+[node name="pegArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="pegArea"]
+scale = Vector2(1.1, 1.1)
+shape = SubResource("CircleShape2D_0iddv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-114, 72)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("2_2syyq")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+show_behind_parent = true
+emitting = false
+amount = 1
+lifetime = 0.6
+one_shot = true
+texture = ExtResource("2_2syyq")
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+angular_velocity_min = 9.45
+angular_velocity_max = 9.45
+scale_amount_curve = SubResource("Curve_xdbp0")
+color = Color(1, 0.537255, 1, 1)
+
+[connection signal="area_entered" from="pegArea" to="." method="_on_peg_area_area_entered"]
