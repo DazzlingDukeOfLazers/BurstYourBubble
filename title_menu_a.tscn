@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://title_menu_a.gd" id="1_8nw6v"]
 [ext_resource type="Theme" uid="uid://b0asnf5kt53ml" path="res://title_menu_theme.tres" id="2_0ybjx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyl36"]
-size = Vector2(199.5, 116)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fvfq3"]
 size = Vector2(522, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyl36"]
+size = Vector2(200, 120)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbi30"]
 size = Vector2(1927, 79)
@@ -26,11 +26,15 @@ script = ExtResource("1_8nw6v")
 
 [node name="instructions" type="Node2D" parent="."]
 
-[node name="RigidBody2D" type="RigidBody2D" parent="instructions"]
+[node name="StartMooGameButton" type="RigidBody2D" parent="instructions"]
 mass = 1000.0
 gravity_scale = 2.66454e-15
 
-[node name="mooGameLabel" type="Label" parent="instructions/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="instructions/StartMooGameButton"]
+position = Vector2(1641, 883.5)
+shape = SubResource("RectangleShape2D_fvfq3")
+
+[node name="mooGameLabel" type="Label" parent="instructions/StartMooGameButton"]
 offset_left = 1376.0
 offset_top = 811.0
 offset_right = 1901.0
@@ -39,25 +43,44 @@ theme = ExtResource("2_0ybjx")
 text = "Moo Game"
 horizontal_alignment = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="instructions/RigidBody2D"]
-position = Vector2(161.25, 886)
-shape = SubResource("RectangleShape2D_gyl36")
-
-[node name="RigidBody2D2" type="RigidBody2D" parent="instructions"]
+[node name="LoadScenesButton" type="RigidBody2D" parent="instructions"]
+position = Vector2(170, 811)
 mass = 1000.0
 gravity_scale = 2.66454e-15
 
-[node name="Label" type="Label" parent="instructions/RigidBody2D2"]
-offset_left = 60.0
-offset_top = 811.0
-offset_right = 259.0
-offset_bottom = 951.0
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="instructions/LoadScenesButton"]
+shape = SubResource("RectangleShape2D_gyl36")
+
+[node name="Button" type="Button" parent="instructions/LoadScenesButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="instructions/LoadScenesButton/Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_0ybjx")
 text = "files"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="instructions/RigidBody2D2"]
-position = Vector2(1641, 883.5)
-shape = SubResource("RectangleShape2D_fvfq3")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="areaTriggers" type="Node2D" parent="."]
 
@@ -87,6 +110,7 @@ position = Vector2(0, 1074)
 position = Vector2(957, 0)
 shape = SubResource("RectangleShape2D_gx0qj")
 
+[connection signal="pressed" from="instructions/LoadScenesButton/Button" to="." method="_on_scene_load_button_pressed"]
 [connection signal="body_entered" from="areaTriggers/top" to="." method="_on_top_body_entered"]
 [connection signal="body_entered" from="areaTriggers/left" to="." method="_on_left_body_entered"]
 [connection signal="body_entered" from="areaTriggers/right" to="." method="_on_right_body_entered"]

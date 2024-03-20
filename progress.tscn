@@ -1,10 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbklyxmam8mjm"]
+[gd_scene load_steps=14 format=3 uid="uid://bbklyxmam8mjm"]
 
 [ext_resource type="PackedScene" uid="uid://bo6bqowxc3117" path="res://button-row.tscn" id="1_hhx5c"]
 [ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="2_hxr38"]
 [ext_resource type="Texture2D" uid="uid://bsfoi0tqk6has" path="res://svg/bat.svg" id="2_rd8lp"]
 [ext_resource type="Texture2D" uid="uid://bgafaeqbt4ktv" path="res://svg/water.svg" id="3_rf8b0"]
 [ext_resource type="Texture2D" uid="uid://tl0kfelajva2" path="res://svg/forest.svg" id="3_sgkrj"]
+[ext_resource type="Script" path="res://addons/advanced_radial_menu/radial_menu_class.gd" id="6_30yjt"]
+[ext_resource type="Texture2D" uid="uid://cmeia6cckkmu7" path="res://svg/butterfly.svg" id="7_5re44"]
+
+[sub_resource type="Gradient" id="Gradient_2aliu"]
+offsets = PackedFloat32Array(0, 0.460432, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.820763, 0.500108, 0.854942, 1, 0, 0.849031, 0.849561, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_awe17"]
+gradient = SubResource("Gradient_2aliu")
+width = 1920
+height = 1080
+fill_from = Vector2(0.53202, 0)
+fill_to = Vector2(0.549261, 1)
 
 [sub_resource type="Curve" id="Curve_pf8vp"]
 max_value = 10.0
@@ -30,6 +43,10 @@ metadata/_edit_vertical_guides_ = [-71.0]
 
 [node name="background" type="Node2D" parent="."]
 
+[node name="Sprite2D" type="Sprite2D" parent="background"]
+texture = SubResource("GradientTexture2D_awe17")
+centered = false
+
 [node name="vanilla" type="Node2D" parent="background"]
 
 [node name="Control" type="Control" parent="background/vanilla"]
@@ -49,7 +66,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1, 1.03922)
-color = Color(0.882353, 0, 0.905882, 1)
+color = Color(0.882353, 0, 0.905882, 0.411765)
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 offset_top = 286.0
@@ -111,22 +128,24 @@ color = Color(0.141176, 0.560784, 0, 1)
 color_ramp = SubResource("Gradient_dv77j")
 hue_variation_max = 0.44
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="more scenery" type="Node2D" parent="."]
 position = Vector2(995, 253)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="more scenery"]
 amount = 1
 texture = ExtResource("3_rf8b0")
 color = Color(1, 1, 0.184314, 1)
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-position = Vector2(1172, 253)
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="more scenery"]
+position = Vector2(177, 0)
 amount = 3
 texture = ExtResource("3_rf8b0")
 emission_shape = 3
 emission_rect_extents = Vector2(900, 10)
 color = Color(0.270588, 0.760784, 0.941176, 1)
 
-[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
-position = Vector2(1976, 159)
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="more scenery"]
+position = Vector2(981, -94)
 amount = 12
 lifetime = 7.0
 texture = ExtResource("2_hxr38")
@@ -139,9 +158,9 @@ color = Color(1, 0.384314, 1, 1)
 color_ramp = SubResource("Gradient_dv77j")
 hue_variation_max = 0.44
 
-[node name="CPUParticles2D8" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D8" type="CPUParticles2D" parent="more scenery"]
 visible = false
-position = Vector2(844, 715)
+position = Vector2(-151, 462)
 rotation = -0.785398
 amount = 12
 lifetime = 7.0
@@ -156,9 +175,9 @@ color = Color(1, 0.384314, 1, 1)
 color_ramp = SubResource("Gradient_dv77j")
 hue_variation_max = 0.44
 
-[node name="CPUParticles2D8-2" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D8-2" type="CPUParticles2D" parent="more scenery"]
 visible = false
-position = Vector2(1137, 720)
+position = Vector2(142, 467)
 rotation = -2.0944
 amount = 12
 lifetime = 7.0
@@ -173,8 +192,8 @@ color = Color(1, 0.384314, 1, 1)
 color_ramp = SubResource("Gradient_dv77j")
 hue_variation_max = 0.44
 
-[node name="CPUParticles2D6" type="CPUParticles2D" parent="."]
-position = Vector2(1800, 709)
+[node name="CPUParticles2D6" type="CPUParticles2D" parent="more scenery"]
+position = Vector2(805, 456)
 amount = 12
 lifetime = 7.0
 texture = ExtResource("2_rd8lp")
@@ -190,8 +209,8 @@ color = Color(1, 0.384314, 1, 1)
 color_ramp = SubResource("Gradient_dv77j")
 hue_variation_max = 0.44
 
-[node name="CPUParticles2D7" type="CPUParticles2D" parent="."]
-position = Vector2(1747, 678)
+[node name="CPUParticles2D7" type="CPUParticles2D" parent="more scenery"]
+position = Vector2(752, 425)
 amount = 12
 lifetime = 7.0
 texture = ExtResource("2_rd8lp")
@@ -207,8 +226,8 @@ color = Color(0.427451, 0.788235, 0.278431, 1)
 color_ramp = SubResource("Gradient_dv77j")
 hue_variation_max = 0.44
 
-[node name="CPUParticles2D4" type="CPUParticles2D" parent="."]
-position = Vector2(2084, 208)
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="more scenery"]
+position = Vector2(1089, -45)
 amount = 11
 lifetime = 7.0
 texture = ExtResource("2_hxr38")
@@ -218,9 +237,9 @@ gravity = Vector2(2.08165e-12, 2.08165e-12)
 initial_velocity_min = 270.85
 initial_velocity_max = 368.93
 
-[node name="CPUParticles2D5" type="CPUParticles2D" parent="."]
+[node name="CPUParticles2D5" type="CPUParticles2D" parent="more scenery"]
 visible = false
-position = Vector2(2084, 208)
+position = Vector2(1089, -45)
 amount = 11
 lifetime = 7.0
 texture = ExtResource("2_hxr38")
@@ -229,3 +248,202 @@ spread = 0.0
 gravity = Vector2(2.08165e-12, 2.08165e-12)
 initial_velocity_min = 270.85
 initial_velocity_max = 368.93
+
+[node name="radMenu" type="Node2D" parent="."]
+position = Vector2(1046, 429)
+
+[node name="RadialMenuAdvanced" type="Control" parent="radMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_30yjt")
+children_auto_sizing = true
+
+[node name="TextureButton" type="TextureButton" parent="radMenu/RadialMenuAdvanced"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 22.1855
+offset_top = -66.2866
+offset_right = 122.186
+offset_bottom = 33.7134
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton2" type="TextureButton" parent="radMenu/RadialMenuAdvanced"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.7265
+offset_top = -116.591
+offset_right = 82.2735
+offset_bottom = -16.5914
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton3" type="TextureButton" parent="radMenu/RadialMenuAdvanced"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.9411
+offset_top = -116.752
+offset_right = 18.0589
+offset_bottom = -16.7515
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton4" type="TextureButton" parent="radMenu/RadialMenuAdvanced"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.103
+offset_top = -66.6464
+offset_right = -22.1034
+offset_bottom = 33.3536
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton5" type="TextureButton" parent="radMenu/RadialMenuAdvanced"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.97
+offset_top = -4.00615
+offset_right = -7.97038
+offset_bottom = 95.9939
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="RadialMenuAdvanced2" type="Control" parent="radMenu/RadialMenuAdvanced"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.1488
+offset_top = 87.3331
+offset_right = 26.4822
+offset_bottom = 100.666
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(6.66667, 6.66667)
+script = ExtResource("6_30yjt")
+children_auto_sizing = true
+
+[node name="TextureButton" type="TextureButton" parent="radMenu/RadialMenuAdvanced/RadialMenuAdvanced2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.6184
+offset_top = -104.204
+offset_right = 89.3816
+offset_bottom = -4.20414
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton2" type="TextureButton" parent="radMenu/RadialMenuAdvanced/RadialMenuAdvanced2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.3816
+offset_top = -104.204
+offset_right = 10.6184
+offset_bottom = -4.20414
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton3" type="TextureButton" parent="radMenu/RadialMenuAdvanced/RadialMenuAdvanced2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.721
+offset_top = -29.2959
+offset_right = -13.7208
+offset_bottom = 70.7041
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton4" type="TextureButton" parent="radMenu/RadialMenuAdvanced/RadialMenuAdvanced2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 17.0
+offset_right = 50.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton5" type="TextureButton" parent="radMenu/RadialMenuAdvanced/RadialMenuAdvanced2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 13.7208
+offset_top = -29.2959
+offset_right = 113.721
+offset_bottom = 70.7041
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")
+
+[node name="TextureButton6" type="TextureButton" parent="radMenu/RadialMenuAdvanced"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 7.7403
+offset_top = -3.71764
+offset_right = 107.74
+offset_bottom = 96.2824
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 50)
+texture_normal = ExtResource("7_5re44")

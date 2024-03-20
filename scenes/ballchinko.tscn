@@ -1,0 +1,175 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmixuaj84ttlx"]
+
+[ext_resource type="Texture2D" uid="uid://dqm0ncjj2toy8" path="res://svg/DALL·E 2024-01-28 18.09.22 - Create a photorealistic image depicting a serene evening scene with a breathtaking sunset. The sky is adorned with vibrant gradients of soft pink, bab.png" id="1_7xr3l"]
+[ext_resource type="PackedScene" uid="uid://dfvpj2tvxnort" path="res://peg.tscn" id="2_t5kbx"]
+[ext_resource type="PackedScene" uid="uid://b3vtotxi834vl" path="res://ball.tscn" id="3_5xpgl"]
+[ext_resource type="Script" path="res://Spawner.gd" id="4_5l8mt"]
+[ext_resource type="Script" path="res://addons/advanced_radial_menu/radial_menu_class.gd" id="4_cae01"]
+[ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="5_sp10f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ql21r"]
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_285a6"]
+size = Vector2(2206, 100)
+
+[sub_resource type="Gradient" id="Gradient_6i3od"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t2cdt"]
+gradient = SubResource("Gradient_6i3od")
+width = 1920
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="background" type="Node2D" parent="Node2D"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/background"]
+position = Vector2(996, 585)
+scale = Vector2(1.9899, 1.15462)
+texture = ExtResource("1_7xr3l")
+
+[node name="ball-tank" type="Node2D" parent="Node2D"]
+
+[node name="screen-tank" type="StaticBody2D" parent="Node2D/ball-tank"]
+position = Vector2(946, 1124)
+physics_material_override = SubResource("PhysicsMaterial_ql21r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/ball-tank/screen-tank"]
+position = Vector2(26, 0)
+shape = SubResource("RectangleShape2D_285a6")
+
+[node name="left wall" type="CollisionShape2D" parent="Node2D/ball-tank/screen-tank"]
+position = Vector2(-1130, -1060)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_285a6")
+
+[node name="left wall2" type="CollisionShape2D" parent="Node2D/ball-tank/screen-tank"]
+position = Vector2(1177, -1089)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_285a6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/ball-tank/screen-tank"]
+position = Vector2(1, 5.99997)
+scale = Vector2(1.00104, 92.0001)
+texture = SubResource("GradientTexture1D_t2cdt")
+
+[node name="peg" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(961, 989)
+
+[node name="peg2" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1272, 989)
+
+[node name="peg4" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(302, 989)
+
+[node name="peg5" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(341, -453)
+
+[node name="peg14" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(154, 989)
+
+[node name="peg15" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(-48, 989)
+
+[node name="peg16" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(473, 989)
+
+[node name="peg17" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(790, 989)
+
+[node name="peg18" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1132, 989)
+
+[node name="peg19" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1416, 989)
+
+[node name="peg20" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1725, 989)
+
+[node name="peg21" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1876, 989)
+
+[node name="peg6" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1562, 989)
+
+[node name="peg7" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1705, -157)
+
+[node name="peg8" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(2015, 989)
+
+[node name="peg9" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1930, -453)
+
+[node name="peg10" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1027, -571)
+
+[node name="peg11" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(473, -486)
+
+[node name="peg12" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1027, -486)
+
+[node name="peg13" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(1539, -418)
+
+[node name="peg3" parent="Node2D/ball-tank" instance=ExtResource("2_t5kbx")]
+position = Vector2(625, 989)
+
+[node name="orb" type="Node2D" parent="Node2D"]
+
+[node name="RadialMenuAdvanced" type="Control" parent="Node2D/orb"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 790.0
+offset_top = 353.0
+offset_right = 830.0
+offset_bottom = 393.0
+script = ExtResource("4_cae01")
+line_rotation_offset_default = 50
+line_color = Color(0.658824, 0, 0.67451, 1)
+line_width = 12
+line_antialised = false
+
+[node name="Button" type="Button" parent="Node2D/orb/RadialMenuAdvanced"]
+layout_mode = 0
+offset_left = -38.4627
+offset_top = -82.6905
+offset_right = 217.537
+offset_bottom = 173.309
+pivot_offset = Vector2(128, 128)
+
+[node name="Button2" type="Button" parent="Node2D/orb/RadialMenuAdvanced"]
+layout_mode = 0
+offset_left = -120.85
+offset_top = -180.876
+offset_right = 135.15
+offset_bottom = 75.1242
+pivot_offset = Vector2(128, 128)
+
+[node name="Button3" type="Button" parent="Node2D/orb/RadialMenuAdvanced"]
+layout_mode = 0
+offset_left = -164.687
+offset_top = -60.4337
+offset_right = 91.3127
+offset_bottom = 195.566
+pivot_offset = Vector2(128, 128)
+
+[node name="Spawner" type="Node2D" parent="Node2D"]
+position = Vector2(1046, 93)
+script = ExtResource("4_5l8mt")
+mob_scene = ExtResource("3_5xpgl")
+
+[node name="Timer" type="Timer" parent="Node2D/Spawner"]
+wait_time = 2.0
+autostart = true
+
+[node name="SpawnImage" type="Sprite2D" parent="Node2D/Spawner"]
+texture = ExtResource("5_sp10f")
+
+[node name="SpawnPool" type="Node2D" parent="Node2D/Spawner"]
+
+[connection signal="timeout" from="Node2D/Spawner/Timer" to="Node2D/Spawner" method="_on_timer_timeout"]

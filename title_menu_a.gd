@@ -58,3 +58,8 @@ func _on_top_body_entered(_body):
 	pass
 #	if body == player_node:
 #		get_tree().reload_current_scene()
+
+
+func _on_scene_load_button_pressed():
+	get_tree().change_scene_to_file("res://main.tscn")
+	pass # Replace with function body.

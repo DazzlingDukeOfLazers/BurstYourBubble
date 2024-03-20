@@ -12,7 +12,7 @@ func _ready():
 	
 	root.set_text(0,"root")
 	folder_list.set_text(0,"folder_list")
-	dir_contents(".")
+	dir_contents("./scenes")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
