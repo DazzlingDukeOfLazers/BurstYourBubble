@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dfvpj2tvxnort"]
 
-[ext_resource type="Script" path="res://peg.gd" id="1_c2nu3"]
+[ext_resource type="Script" path="res://things/peg.gd" id="1_c2nu3"]
 [ext_resource type="Texture2D" uid="uid://b85l3he8bp65w" path="res://svg/rat.svg" id="2_5ojhx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_inksu"]

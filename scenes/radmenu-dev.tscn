@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddppkeyms1qpl"]
 
-[ext_resource type="Script" path="res://addons/advanced_radial_menu/radial_menu_class.gd" id="1_anqxd"]
-[ext_resource type="Texture2D" uid="uid://bsfoi0tqk6has" path="res://svg/bat.svg" id="2_xj3it"]
+[ext_resource type="Script" path="res://addons/advanced_radial_menu/radial_menu_class.gd" id="1_vg7xe"]
+[ext_resource type="Texture2D" uid="uid://bsfoi0tqk6has" path="res://svg/bat.svg" id="2_67q73"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -12,7 +12,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_anqxd")
+script = ExtResource("1_vg7xe")
 children_auto_sizing = true
 
 [node name="TextureButton" type="TextureButton" parent="Node2D/RadialMenuAdvanced"]
@@ -22,4 +22,4 @@ offset_top = -30.0
 offset_right = 70.0
 offset_bottom = 70.0
 pivot_offset = Vector2(50, 50)
-texture_normal = ExtResource("2_xj3it")
+texture_normal = ExtResource("2_67q73")

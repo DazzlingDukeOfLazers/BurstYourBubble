@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b6umvxca8nhr8"]
 
-[ext_resource type="Script" path="res://title_screen.gd" id="1_d4ar0"]
-[ext_resource type="PackedScene" uid="uid://qn17cf1na6nr" path="res://title_menu_a.tscn" id="2_phea5"]
+[ext_resource type="Script" path="res://things/title_screen.gd" id="1_d4ar0"]
+[ext_resource type="PackedScene" uid="uid://qn17cf1na6nr" path="res://things/title_menu_a.tscn" id="2_phea5"]
 [ext_resource type="FontFile" uid="uid://bvilsgrpmn828" path="res://fonts/Lemon-Regular.ttf" id="2_u4chg"]
 
 [sub_resource type="Theme" id="Theme_c181a"]

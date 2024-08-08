@@ -4,6 +4,10 @@ signal hit
 
 var coin_count:int = 0
 
+@export var push_force = 80.0
+
+@export var radius_px = 0
+
 @export var speed = 400 # pixels / sec
 @onready var screen_size
 
@@ -24,26 +28,36 @@ func _process(_delta):
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
+		# $AnimatedSprite2D.play()
+	# else:
+		# $AnimatedSprite2D.stop()
 		
 	move_and_slide()
 	
-	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = -velocity.x < 0
-	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = "walk" # TBD, replace with better "up" animation
-		$AnimatedSprite2D.flip_v = velocity.y > 0
-
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider() is RigidBody2D:
+			collision.get_collider().apply_central_impulse(-collision.get_normal() * push_force)
+	
+	#if velocity.x != 0:
+		#$AnimatedSprite2D.animation = "walk"
+		#$AnimatedSprite2D.flip_v = false
+		#$AnimatedSprite2D.flip_h = -velocity.x < 0
+	#elif velocity.y != 0:
+		#$AnimatedSprite2D.animation = "walk" # TBD, replace with better "up" animation
+		#$AnimatedSprite2D.flip_v = velocity.y > 0
+#
 
 	
 func start(pos):
 	self.position = pos.position
 	show()
 	$CollisionShape2D.set_deferred(&"disabled", false)
+
+
+
+	
+
 
 func _on_body_entered(_body):
 	hide()
@@ -55,6 +69,6 @@ func _on_body_entered(_body):
 func _on_pickup_area_2d_area_entered(area):
 	if area.name.begins_with("coin"):
 		coin_count += 1
-		get_node("../hud/coins").set_value(coin_count)
+		#get_node("../../hud/coins").set_value(coin_count)
 		area.queue_free()
 

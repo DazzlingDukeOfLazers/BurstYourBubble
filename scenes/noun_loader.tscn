@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c4tsbmls6f08o"]
 
-[ext_resource type="Script" path="res://svg_vbox.gd" id="1_4qe1p"]
-[ext_resource type="Script" path="res://existing_svg_tree.gd" id="1_lrpai"]
+[ext_resource type="Script" path="res://things/svg_vbox.gd" id="1_4qe1p"]
+[ext_resource type="Script" path="res://things/existing_svg_tree.gd" id="1_lrpai"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xv8s0"]
 content_margin_left = 200.0

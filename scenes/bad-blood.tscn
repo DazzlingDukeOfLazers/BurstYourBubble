@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://0oiubyru6nnd"]
 
-[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://player.tscn" id="1_rragi"]
+[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://things/player.tscn" id="1_rragi"]
 [ext_resource type="Texture2D" uid="uid://c13kkvsvgsquy" path="res://svg/taylor swift headArtboard 1.png" id="2_l7lvv"]
-[ext_resource type="PackedScene" uid="uid://dfvpj2tvxnort" path="res://peg.tscn" id="3_hlvbn"]
-[ext_resource type="PackedScene" uid="uid://b3vtotxi834vl" path="res://ball.tscn" id="4_558ay"]
-[ext_resource type="PackedScene" uid="uid://q1w412ug8a6a" path="res://tay-peg.tscn" id="5_8kcak"]
+[ext_resource type="PackedScene" uid="uid://dfvpj2tvxnort" path="res://things/peg.tscn" id="3_hlvbn"]
+[ext_resource type="PackedScene" uid="uid://b3vtotxi834vl" path="res://things/ball.tscn" id="4_558ay"]
+[ext_resource type="PackedScene" uid="uid://q1w412ug8a6a" path="res://things/tay-peg.tscn" id="5_8kcak"]
 
 [sub_resource type="Curve" id="Curve_hx30q"]
 max_value = 4.0

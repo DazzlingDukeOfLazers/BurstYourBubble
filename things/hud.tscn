@@ -1,15 +1,15 @@
 [gd_scene load_steps=20 format=3 uid="uid://dfdjru07q6xxm"]
 
 [ext_resource type="Script" path="res://things/hud.gd" id="1_eipve"]
-[ext_resource type="Script" path="res://Score.gd" id="1_pcpam"]
-[ext_resource type="Script" path="res://timer.gd" id="2_32hx2"]
+[ext_resource type="Script" path="res://things/Score.gd" id="1_pcpam"]
+[ext_resource type="Script" path="res://things/timer.gd" id="2_32hx2"]
 [ext_resource type="Texture2D" uid="uid://3sjtoj6o0qdm" path="res://svg/brick.svg" id="3_aha7c"]
 [ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="4_6imiv"]
 [ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="5_xkkb5"]
 [ext_resource type="Texture2D" uid="uid://c8a618ethmue5" path="res://svg/tandem.svg" id="6_du53u"]
 [ext_resource type="Script" path="res://things/scene-code.gd" id="7_tq6wv"]
 [ext_resource type="PackedScene" uid="uid://ds3v26ffbkuyq" path="res://things/water.tscn" id="8_ti3sa"]
-[ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://mob.tscn" id="9_o6rvd"]
+[ext_resource type="PackedScene" uid="uid://b6u84hlcs25bm" path="res://things/mob.tscn" id="9_o6rvd"]
 
 [sub_resource type="SystemFont" id="SystemFont_c4jp7"]
 subpixel_positioning = 0

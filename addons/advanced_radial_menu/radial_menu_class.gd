@@ -15,12 +15,12 @@ class_name RadialMenuAdvanced
 @export_group('Base Circle')
 @export										var circle_offset:Vector2
 @export										var color:Color = Color(0,0,0, 0.3) 
-@export_range(0, 1024, 1)					var circle_radius:int = 384
+@export_range(0, 100000, 1)					var circle_radius:int = 384
 @export										var set_auto_radius : bool = false:					set = _set_auto_radius
 
 @export_group('Arc', 'arc_')
 @export										var arc_color:Color = Color.WHITE
-@export_range(0, 1024)						var arc_inner_radius:int = 128
+@export_range(0, 10000)						var arc_inner_radius:int = 128
 @export_range(-TAU, TAU*2)					var arc_start_angle:float = TAU
 @export_range(-256, 256)					var arc_end_angle:float = 128
 @export_range(0, 64)						var arc_detail:int = 32

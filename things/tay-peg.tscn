@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://q1w412ug8a6a"]
 
-[ext_resource type="Script" path="res://peg.gd" id="1_gkrv3"]
+[ext_resource type="Script" path="res://things/peg.gd" id="1_gkrv3"]
 [ext_resource type="Texture2D" uid="uid://c13kkvsvgsquy" path="res://svg/taylor swift headArtboard 1.png" id="2_2syyq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_inksu"]

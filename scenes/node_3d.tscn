@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bi01iv17ujgy3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_s03w2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oxd0d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utvl8"]
+albedo_color = Color(0.129412, 0.835294, 0, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2c7dd"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_c4353"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ej34"]
+albedo_color = Color(1, 0.329412, 1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.972711, -0.23202, 0, 0.23202, 0.972711, 0, 0, 4.73824)
+
+[node name="ground" type="Node" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ground"]
+physics_material_override = SubResource("PhysicsMaterial_s03w2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/StaticBody3D"]
+shape = SubResource("BoxShape3D_oxd0d")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ground/StaticBody3D"]
+material = SubResource("StandardMaterial3D_utvl8")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68131, 0)
+physics_material_override = SubResource("PhysicsMaterial_2c7dd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 116.33, 0)
+shape = SubResource("SphereShape3D_c4353")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D"]
+material = SubResource("StandardMaterial3D_3ej34")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 423.627, 0)

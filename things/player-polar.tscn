@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpxpnirmkvbub"]
+
+[ext_resource type="Texture2D" uid="uid://dtxl4nspp0bfg" path="res://svg/Pixel_grid_4000x2000.svg" id="1_4i2uh"]
+[ext_resource type="Script" path="res://things/Player-polar.gd" id="1_5yqnn"]
+[ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="2_wxkuv"]
+[ext_resource type="Texture2D" uid="uid://bu6mmgrj1k7h1" path="res://svg/cow.svg" id="3_3qkua"]
+[ext_resource type="Texture2D" uid="uid://b7d11pvu5rsii" path="res://svg/cow_2.svg" id="4_7xkbj"]
+
+[sub_resource type="Gradient" id="Gradient_tef3e"]
+colors = PackedColorArray(0.913256, 0.393082, 0.45645, 1, 0.505882, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j55ja"]
+gradient = SubResource("Gradient_tef3e")
+width = 3000
+height = 3000
+fill_from = Vector2(0.527094, 0.00246305)
+fill_to = Vector2(0.504926, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0kvwm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wxkuv")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_3qkua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7xkbj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v43r0"]
+radius = 51.0392
+
+[node name="universe" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_j55ja")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("1_4i2uh")
+
+[node name="temp_world" type="Node2D" parent="."]
+rotation = 2.38412
+
+[node name="radius" type="Node2D" parent="temp_world"]
+
+[node name="Player-polar" type="CharacterBody2D" parent="temp_world/radius"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_5yqnn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="temp_world/radius/Player-polar"]
+position = Vector2(-2.08165e-12, -2.08165e-12)
+sprite_frames = SubResource("SpriteFrames_0kvwm")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="temp_world/radius/Player-polar"]
+position = Vector2(-2.08165e-12, -2.08165e-12)
+shape = SubResource("CircleShape2D_v43r0")
+debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[node name="pickupArea2D" type="Area2D" parent="temp_world/radius/Player-polar"]
+position = Vector2(-2.08165e-12, -2.08165e-12)
+
+[node name="pickupCollisionShape2D" type="CollisionShape2D" parent="temp_world/radius/Player-polar/pickupArea2D"]
+shape = SubResource("CircleShape2D_v43r0")
+debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[node name="Camera2D" type="Camera2D" parent="temp_world/radius/Player-polar"]
+ignore_rotation = false
+
+[connection signal="area_entered" from="temp_world/radius/Player-polar/pickupArea2D" to="temp_world/radius/Player-polar" method="_on_pickup_area_2d_area_entered"]

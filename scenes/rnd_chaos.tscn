@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://nncrnohl8om4"]
 
-[ext_resource type="Script" path="res://rnd_chaos.gd" id="1_el083"]
+[ext_resource type="Script" path="res://scenes/rnd_chaos.gd" id="1_el083"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1sruw"]
 font_size = 300

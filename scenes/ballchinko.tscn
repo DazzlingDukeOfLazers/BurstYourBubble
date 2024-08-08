@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://bmixuaj84ttlx"]
 
 [ext_resource type="Texture2D" uid="uid://dqm0ncjj2toy8" path="res://svg/DALL·E 2024-01-28 18.09.22 - Create a photorealistic image depicting a serene evening scene with a breathtaking sunset. The sky is adorned with vibrant gradients of soft pink, bab.png" id="1_7xr3l"]
-[ext_resource type="PackedScene" uid="uid://dfvpj2tvxnort" path="res://peg.tscn" id="2_t5kbx"]
-[ext_resource type="PackedScene" uid="uid://b3vtotxi834vl" path="res://ball.tscn" id="3_5xpgl"]
-[ext_resource type="Script" path="res://Spawner.gd" id="4_5l8mt"]
+[ext_resource type="PackedScene" uid="uid://dfvpj2tvxnort" path="res://things/peg.tscn" id="2_t5kbx"]
+[ext_resource type="PackedScene" uid="uid://b3vtotxi834vl" path="res://things/ball.tscn" id="3_5xpgl"]
+[ext_resource type="Script" path="res://things/Spawner.gd" id="4_5l8mt"]
 [ext_resource type="Script" path="res://addons/advanced_radial_menu/radial_menu_class.gd" id="4_cae01"]
 [ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="5_sp10f"]
 

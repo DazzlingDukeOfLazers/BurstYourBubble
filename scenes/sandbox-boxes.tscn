@@ -1,0 +1,579 @@
+[gd_scene load_steps=18 format=3 uid="uid://d11p3mn5gluxj"]
+
+[ext_resource type="PackedScene" uid="uid://dlrudgq46v7od" path="res://things/coin_bounce.tscn" id="2_jn563"]
+[ext_resource type="PackedScene" uid="uid://cdw3bo78840h2" path="res://things/player-box.tscn" id="3_1mpe1"]
+[ext_resource type="Script" path="res://addons/advanced_radial_menu/radial_menu_class.gd" id="3_vca17"]
+[ext_resource type="PackedScene" uid="uid://cxio7rvgmn5" path="res://things/coin.tscn" id="4_36610"]
+[ext_resource type="PackedScene" uid="uid://dfdjru07q6xxm" path="res://things/hud.tscn" id="6_xtcdn"]
+
+[sub_resource type="Gradient" id="Gradient_yo5cm"]
+colors = PackedColorArray(0, 0.670588, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kacf"]
+gradient = SubResource("Gradient_yo5cm")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.477833, 0.539409)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7pg3m"]
+radius = 200.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xbxxf"]
+friction = 0.47
+bounce = 0.49
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_osnx1"]
+bounce = 0.19
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p026a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_46eav"]
+radius = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mjqb1"]
+top_radius = 1.0
+bottom_radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vqskr"]
+albedo_color = Color(1, 0.407843, 1, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2f4om"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hm76w"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_2f4om")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vp1t8"]
+size = Vector2(8, 8)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Game" type="Node2D" parent="SubViewport"]
+
+[node name="world" type="Node2D" parent="SubViewport/Game"]
+
+[node name="background" type="Sprite2D" parent="SubViewport/Game/world"]
+texture = SubResource("GradientTexture2D_1kacf")
+
+[node name="CenterContainer" type="CenterContainer" parent="SubViewport/Game/world"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RadialMenuAdvanced" type="Control" parent="SubViewport/Game/world/CenterContainer"]
+layout_mode = 2
+script = ExtResource("3_vca17")
+auto_sizing = false
+color = Color(0, 0.831373, 0, 0.682353)
+circle_radius = 1024
+
+[node name="circle-of-life" type="Node2D" parent="SubViewport/Game/world"]
+visible = false
+
+[node name="Area2D" type="Area2D" parent="SubViewport/Game/world/circle-of-life"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Game/world/circle-of-life/Area2D"]
+shape = SubResource("CircleShape2D_7pg3m")
+
+[node name="arena" type="Node2D" parent="SubViewport/Game/world"]
+
+[node name="coin2" parent="SubViewport/Game/world/arena" instance=ExtResource("2_jn563")]
+visible = false
+position = Vector2(-160, 0)
+physics_material_override = SubResource("PhysicsMaterial_xbxxf")
+gravity_scale = 1.66533e-16
+
+[node name="coin" parent="SubViewport/Game/world/arena" instance=ExtResource("4_36610")]
+visible = false
+position = Vector2(208, 0)
+
+[node name="Area2D" type="RigidBody2D" parent="SubViewport/Game/world/arena"]
+position = Vector2(32, 0)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/Area2D"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/Area2D/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/Area2D/CollisionShape2D2"]
+visible = false
+
+[node name="dots" type="Node2D" parent="SubViewport/Game/world/arena"]
+position = Vector2(56, 0)
+
+[node name="dot" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(32, 0)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot/CollisionShape2D2"]
+visible = false
+
+[node name="dot2" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(8, 0)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot2"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot2/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot2/CollisionShape2D2"]
+visible = false
+
+[node name="dot3" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(16, -24)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot3"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot3/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot3/CollisionShape2D2"]
+visible = false
+
+[node name="dot4" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(56, -8)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot4"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot4/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot4/CollisionShape2D2"]
+visible = false
+
+[node name="dot5" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(48, -32)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot5"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot5/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot5/CollisionShape2D2"]
+visible = false
+
+[node name="dot6" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(16, 16)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot6"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot6/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot6/CollisionShape2D2"]
+visible = false
+
+[node name="dot7" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(40, 8)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot7"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot7/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot7/CollisionShape2D2"]
+visible = false
+
+[node name="dot8" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(32, 32)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot8"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot8/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot8/CollisionShape2D2"]
+visible = false
+
+[node name="dot9" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-8, 24)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot9"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot9/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot9/CollisionShape2D2"]
+visible = false
+
+[node name="dot10" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(16, 40)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot10"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot10/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot10/CollisionShape2D2"]
+visible = false
+
+[node name="dot11" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-8, -24)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot11"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot11/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot11/CollisionShape2D2"]
+visible = false
+
+[node name="dot12" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(16, -40)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot12"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot12/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot12/CollisionShape2D2"]
+visible = false
+
+[node name="dot13" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-8, -56)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot13"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot13/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot13/CollisionShape2D2"]
+visible = false
+
+[node name="dot14" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-32, -48)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot14"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot14/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot14/CollisionShape2D2"]
+visible = false
+
+[node name="dot15" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(24, -64)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot15"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot15/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot15/CollisionShape2D2"]
+visible = false
+
+[node name="dot16" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-32, -72)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot16"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot16/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot16/CollisionShape2D2"]
+visible = false
+
+[node name="dot17" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-56, -48)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot17"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot17/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot17/CollisionShape2D2"]
+visible = false
+
+[node name="dot18" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-88, -40)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot18"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot18/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot18/CollisionShape2D2"]
+visible = false
+
+[node name="dot19" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-72, -64)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot19"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot19/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot19/CollisionShape2D2"]
+visible = false
+
+[node name="dot20" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-112, -64)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot20"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot20/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot20/CollisionShape2D2"]
+visible = false
+
+[node name="dot21" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-120, -24)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot21"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot21/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot21/CollisionShape2D2"]
+visible = false
+
+[node name="dot22" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-96, -8)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot22"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot22/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot22/CollisionShape2D2"]
+visible = false
+
+[node name="dot23" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-136, 8)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot23"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot23/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot23/CollisionShape2D2"]
+visible = false
+
+[node name="dot24" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-104, 24)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot24"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot24/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot24/CollisionShape2D2"]
+visible = false
+
+[node name="dot25" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-128, 56)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot25"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot25/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot25/CollisionShape2D2"]
+visible = false
+
+[node name="dot26" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-72, 48)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot26"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot26/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot26/CollisionShape2D2"]
+visible = false
+
+[node name="dot27" type="RigidBody2D" parent="SubViewport/Game/world/arena/dots"]
+position = Vector2(-32, 64)
+physics_material_override = SubResource("PhysicsMaterial_osnx1")
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SubViewport/Game/world/arena/dots/dot27"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_46eav")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="SubViewport/Game/world/arena/dots/dot27/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/world/arena/dots/dot27/CollisionShape2D2"]
+visible = false
+
+[node name="player-node" type="Node2D" parent="SubViewport/Game/world/arena"]
+
+[node name="Player2" parent="SubViewport/Game/world/arena/player-node" instance=ExtResource("3_1mpe1")]
+push_force = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport/Game/world/arena/player-node/Player2"]
+position = Vector2(-2.08165e-12, -2.08165e-12)
+
+[node name="hud" parent="SubViewport/Game" instance=ExtResource("6_xtcdn")]
+
+[node name="Window" type="Window" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, 2.08165e-12)
+radius = 2.0
+height = 1.0
+sides = 32
+material = SubResource("StandardMaterial3D_vqskr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hm76w")
+mesh = SubResource("PlaneMesh_vp1t8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.00333352, 0.999994, 0, -0.999994, 0.00333352, 0, 2.64854, 0)

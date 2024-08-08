@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo6bqowxc3117"]
 
-[ext_resource type="Theme" uid="uid://b0asnf5kt53ml" path="res://title_menu_theme.tres" id="1_wmpm0"]
-[ext_resource type="Script" path="res://Progress-button.gd" id="2_7kctc"]
+[ext_resource type="Theme" uid="uid://b0asnf5kt53ml" path="res://things/title_menu_theme.tres" id="1_wmpm0"]
+[ext_resource type="Script" path="res://things/Progress-button.gd" id="2_7kctc"]
 [ext_resource type="Texture2D" uid="uid://bsfoi0tqk6has" path="res://svg/bat.svg" id="3_gvfu0"]
 
 [node name="VBoxContainer" type="VBoxContainer"]

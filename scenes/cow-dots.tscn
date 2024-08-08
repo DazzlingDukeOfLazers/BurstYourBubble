@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://pnvos58yar7f"]
+
+[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://things/player.tscn" id="1_8yhq7"]
+[ext_resource type="PackedScene" uid="uid://03arj41ig20y" path="res://things/wall_128x128_square_.tscn" id="4_5oe5d"]
+
+[node name="Cow-dots" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_8yhq7")]
+
+[node name="maze_1" type="Node2D" parent="."]
+
+[node name="Node2D" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1024, 896)
+
+[node name="Node2D2" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1024, 768)
+
+[node name="Node2D3" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1024, 512)
+
+[node name="Node2D4" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1024, 640)
+
+[node name="Node2D5" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1024, 136)
+
+[node name="Node2D7" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1152, 256)
+
+[node name="Node2D8" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1152, 512)
+
+[node name="Node2D9" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1408, 512)
+
+[node name="Node2D6" parent="maze_1" instance=ExtResource("4_5oe5d")]
+position = Vector2(1024, 256)

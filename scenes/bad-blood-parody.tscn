@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqt3is8h6c6ak"]
 
-[ext_resource type="Texture2D" uid="uid://bcctlrnv38gbu" path="res://ethan-bodnar-kgC99X3WH1w-unsplash.jpg" id="1_7xftx"]
-[ext_resource type="Script" path="res://PathFollow2D.gd" id="2_p806v"]
+[ext_resource type="Texture2D" uid="uid://bcctlrnv38gbu" path="res://svg/ethan-bodnar-kgC99X3WH1w-unsplash.jpg" id="1_7xftx"]
+[ext_resource type="Script" path="res://things/PathFollow2D.gd" id="2_p806v"]
 [ext_resource type="Texture2D" uid="uid://c13kkvsvgsquy" path="res://svg/taylor swift headArtboard 1.png" id="2_xnqfy"]
-[ext_resource type="Texture2D" uid="uid://dq15m17mxn58s" path="res://image-removebg-preview (60).png" id="4_8nhh3"]
+[ext_resource type="Texture2D" uid="uid://dq15m17mxn58s" path="res://svg/image-removebg-preview (60).png" id="4_8nhh3"]
 
 [sub_resource type="Curve" id="Curve_1fe4c"]
 min_value = 0.2
