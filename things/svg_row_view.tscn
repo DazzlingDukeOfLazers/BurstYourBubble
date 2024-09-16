@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cconpy7cll0nj"]
+
+[ext_resource type="Texture2D" uid="uid://bu6mmgrj1k7h1" path="res://svg/cow.svg" id="1_vmxs6"]
+[ext_resource type="FontFile" uid="uid://bvilsgrpmn828" path="res://fonts/Lemon-Regular.ttf" id="2_xl0ge"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mokem"]
+font = ExtResource("2_xl0ge")
+font_size = 58
+
+[node name="svg_row" type="HBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.086
+anchor_top = 2.535
+anchor_right = 0.086
+anchor_bottom = 2.535
+offset_left = -88.064
+offset_top = -100.0
+offset_right = 935.936
+offset_bottom = 100.0
+
+[node name="thumbnail" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_vmxs6")
+expand_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="."]
+custom_minimum_size = Vector2(20, 2.08165e-12)
+layout_mode = 2
+
+[node name="filename" type="Label" parent="."]
+layout_mode = 2
+text = "foo"
+label_settings = SubResource("LabelSettings_mokem")

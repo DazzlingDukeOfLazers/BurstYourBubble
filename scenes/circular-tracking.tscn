@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://brhcrqduvu6ok"]
+
+[ext_resource type="Script" path="res://Circle-wagon.gd" id="1_dgm30"]
+[ext_resource type="Texture2D" uid="uid://dqm0ncjj2toy8" path="res://svg/DALL·E 2024-01-28 18.09.22 - Create a photorealistic image depicting a serene evening scene with a breathtaking sunset. The sky is adorned with vibrant gradients of soft pink, bab.png" id="1_ibbgw"]
+[ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="2_7mngb"]
+[ext_resource type="Texture2D" uid="uid://bsfoi0tqk6has" path="res://svg/bat.svg" id="2_w7lhl"]
+[ext_resource type="Texture2D" uid="uid://cchk4aw4bqbqf" path="res://svg/helicopter.svg" id="3_g1ai7"]
+
+[sub_resource type="Curve2D" id="Curve2D_db5vy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 1
+
+[sub_resource type="Curve2D" id="Curve2D_10sg5"]
+_data = {
+"points": PackedVector2Array(145.255, 0.417953, -145.255, -0.417953, 26.7924, 503.859, 7.8429, 129.139, -7.8429, -129.139, -230.622, 249.282, -173.737, -1.71, 173.737, 1.71, 23.9553, -8.1329, 1.09557, -123.843, -1.09557, 123.843, 281.326, 238.445, 174.594, -4.53114, -174.594, 4.53114, 26.7924, 503.859)
+}
+point_count = 5
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(0, -672)
+scale = Vector2(4.32, 4.32)
+texture = ExtResource("1_ibbgw")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_db5vy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(16, -24)
+scale = Vector2(4.32, 4.32)
+texture = ExtResource("2_7mngb")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-496, -384)
+rotation = -0.835184
+scale = Vector2(4.32, 4.32)
+texture = ExtResource("2_w7lhl")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-320, 416)
+rotation = -2.43655
+scale = Vector2(4.32, 4.32)
+texture = ExtResource("3_g1ai7")
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(-32, -248)
+rotation = 0.0055413
+curve = SubResource("Curve2D_10sg5")
+script = ExtResource("1_dgm30")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(26.7924, 503.859)
+rotation = -3.13872
+
+[node name="Camera2D" type="Camera2D" parent="Path2D2/PathFollow2D"]
+position = Vector2(2.08165e-12, -200)
+ignore_rotation = false
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D2/PathFollow2D"]
+position = Vector2(-15.7965, -23.9475)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_7mngb")

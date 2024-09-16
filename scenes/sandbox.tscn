@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://hsx1vo3k7lx"]
+
+[ext_resource type="PackedScene" uid="uid://58yxr3yg5iei" path="res://things/player.tscn" id="1_8hv4l"]
+[ext_resource type="Script" path="res://addons/advanced_radial_menu/radial_menu_class.gd" id="1_hkqn0"]
+[ext_resource type="Texture2D" uid="uid://decwjk5j1qddc" path="res://svg/entire_worldmap_single_image.png" id="1_ihhf1"]
+[ext_resource type="PackedScene" uid="uid://cxio7rvgmn5" path="res://things/coin.tscn" id="2_b8og1"]
+[ext_resource type="Texture2D" uid="uid://b6javs87mb27r" path="res://svg/bird.svg" id="2_fi2os"]
+[ext_resource type="PackedScene" uid="uid://dfdjru07q6xxm" path="res://things/hud.tscn" id="3_yypam"]
+
+[sub_resource type="Gradient" id="Gradient_yo5cm"]
+colors = PackedColorArray(1, 0.835294, 0.345098, 1, 0.505882, 0.972549, 0.568627, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kacf"]
+gradient = SubResource("Gradient_yo5cm")
+width = 16384
+height = 16384
+fill = 1
+fill_from = Vector2(0.504926, 0.475369)
+fill_to = Vector2(0.0147783, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7pg3m"]
+radius = 200.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_p026a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfcyn"]
+radius = 100.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mjqb1"]
+
+[node name="Game" type="Node2D"]
+
+[node name="world" type="Node2D" parent="."]
+
+[node name="background" type="Sprite2D" parent="world"]
+visible = false
+texture = SubResource("GradientTexture2D_1kacf")
+
+[node name="Sprite2D" type="Sprite2D" parent="world"]
+scale = Vector2(8, 8)
+texture = ExtResource("1_ihhf1")
+
+[node name="scale-test-1" type="Node2D" parent="world"]
+scale = Vector2(1024, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="world/scale-test-1"]
+texture = ExtResource("2_fi2os")
+
+[node name="CenterContainer" type="CenterContainer" parent="world"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RadialMenuAdvanced" type="Control" parent="world/CenterContainer"]
+layout_mode = 2
+script = ExtResource("1_hkqn0")
+auto_sizing = false
+color = Color(0, 0.831373, 0, 0.682353)
+circle_radius = 1024
+
+[node name="circle-of-life" type="Node2D" parent="world"]
+
+[node name="Area2D" type="Area2D" parent="world/circle-of-life"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world/circle-of-life/Area2D"]
+shape = SubResource("CircleShape2D_7pg3m")
+
+[node name="arena" type="Node2D" parent="world"]
+
+[node name="coin" parent="world/arena" instance=ExtResource("2_b8og1")]
+position = Vector2(208, 0)
+
+[node name="player-node" type="Node2D" parent="world/arena"]
+
+[node name="Area2D" type="Area2D" parent="world/arena/player-node"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="world/arena/player-node/Area2D"]
+material = SubResource("CanvasItemMaterial_p026a")
+shape = SubResource("CircleShape2D_rfcyn")
+debug_color = Color(0.772549, 0.298039, 0.823529, 0.419608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="world/arena/player-node/Area2D/CollisionShape2D2"]
+mesh = SubResource("CylinderMesh_mjqb1")
+
+[node name="Sprite2D" type="Sprite2D" parent="world/arena/player-node/Area2D/CollisionShape2D2"]
+visible = false
+
+[node name="Player" parent="world/arena/player-node" instance=ExtResource("1_8hv4l")]
+
+[node name="Camera2D" type="Camera2D" parent="world/arena/player-node/Player"]
+
+[node name="hud" parent="." instance=ExtResource("3_yypam")]

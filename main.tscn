@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://8ip1exb6la0f"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_e36ye"]
+
+[sub_resource type="Theme" id="Theme_sb3ma"]
+default_font_size = 24
+
+[sub_resource type="Theme" id="Theme_oonwq"]
+default_font_size = 24
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_e36ye")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 694.0
+offset_top = 262.0
+offset_right = 1396.0
+offset_bottom = 757.0
+theme = SubResource("Theme_sb3ma")
+
+[node name="Tree2" type="Tree" parent="."]
+custom_minimum_size = Vector2(100, 100)
+offset_right = 569.0
+offset_bottom = 715.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_oonwq")
+column_titles_visible = true
+
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

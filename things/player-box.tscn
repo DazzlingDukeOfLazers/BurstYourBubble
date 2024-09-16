@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdw3bo78840h2"]
+
+[ext_resource type="Script" path="res://things/Player.gd" id="1_ex8f4"]
+
+[sub_resource type="Gradient" id="Gradient_q168b"]
+offsets = PackedFloat32Array(0.154676, 1)
+colors = PackedColorArray(0, 1, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1nrg5"]
+gradient = SubResource("Gradient_q168b")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcfct"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v43r0"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_ex8f4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_1nrg5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hcfct")
+debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[node name="pickupArea2D" type="Area2D" parent="."]
+
+[node name="pickupCollisionShape2D" type="CollisionShape2D" parent="pickupArea2D"]
+shape = SubResource("CircleShape2D_v43r0")
+debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[connection signal="area_entered" from="pickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]

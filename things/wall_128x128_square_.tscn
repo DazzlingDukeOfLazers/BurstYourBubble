@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://03arj41ig20y"]
+
+[ext_resource type="PackedScene" uid="uid://u2u02mv6htww" path="res://things/wall_32x128_.tscn" id="1_fnr2x"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -48)
+
+[node name="wall_32x128_" parent="Node2D" instance=ExtResource("1_fnr2x")]
+
+[node name="wall_32x128_2" parent="Node2D" instance=ExtResource("1_fnr2x")]
+position = Vector2(2.08165e-12, 96)
+
+[node name="wall_32x128_3" parent="Node2D" instance=ExtResource("1_fnr2x")]
+position = Vector2(48, 48)
+rotation = 1.5708
+
+[node name="wall_32x128_4" parent="Node2D" instance=ExtResource("1_fnr2x")]
+position = Vector2(-48, 48)
+rotation = 1.5708

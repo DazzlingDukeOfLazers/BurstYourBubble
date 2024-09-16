@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://58yxr3yg5iei"]
+
+[ext_resource type="Script" path="res://things/Player.gd" id="1_q0p8s"]
+[ext_resource type="Texture2D" uid="uid://db1ywg8dls5au" path="res://svg/coin.svg" id="2_f4aux"]
+[ext_resource type="Texture2D" uid="uid://bu6mmgrj1k7h1" path="res://svg/cow.svg" id="3_anver"]
+[ext_resource type="Texture2D" uid="uid://b7d11pvu5rsii" path="res://svg/cow_2.svg" id="4_42vgf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0kvwm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f4aux")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_anver")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_42vgf")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v43r0"]
+radius = 51.0392
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_q0p8s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0kvwm")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v43r0")
+debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[node name="pickupArea2D" type="Area2D" parent="."]
+
+[node name="pickupCollisionShape2D" type="CollisionShape2D" parent="pickupArea2D"]
+shape = SubResource("CircleShape2D_v43r0")
+debug_color = Color(0.658824, 0.333333, 0.976471, 0.419608)
+
+[connection signal="area_entered" from="pickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]
